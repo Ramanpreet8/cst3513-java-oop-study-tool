@@ -1,0 +1,84 @@
+
+OVERLOADING METHODS:
+
+// different data types
+
+1.
+
+public class OverLoadSquare {
+
+   
+    public static void main(String[] args) {
+  System.out.printf( "Square of integer 7 is %d\n", square( 7 ) );
+  System.out.printf( "Square of double 7.5 is %.2f\n", square( 7.5 ) );
+  }
+
+     // square method with int argument
+
+   public static int square( int intValue )
+   {
+      System.out.printf( "\nCalled square with int argument: %d\n",
+         intValue );
+      return intValue * intValue;
+   } // end method square with int argument
+
+
+
+   // square method with double argument
+
+ public static double square( double doubleValue )
+   {
+      System.out.printf( "\nCalled square with double argument: %.2f\n",
+         doubleValue );
+      return doubleValue * doubleValue;
+   } // end method square with double argument
+}
+
+run:
+
+Called square with int argument: 7
+Square of integer 7 is 49
+
+Called square with double argument: 7.50
+Square of double 7.5 is 56.25
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+// Different Number of Arguments
+
+
+2. // Another Overloading functions
+
+package javaapplication64;
+
+public class Main {
+
+    public static void main(String[] args) {
+  System.out.printf("The average of 2.0,2.5,and 3.0 is %.2f\n"
+          ,ave(2.0,2.5,3.0) );
+   System.out.printf("The average of 2.0,2.5,and 3.0 is %.2f\n"
+          ,ave(4.5,5.5) );
+ // System.out.printf( "Square of double 7.5 is %.2f\n", square( 7.5 ) );
+  }
+     // square method with int argument
+   public static double ave(double n1,double n2 )
+   {
+
+      return (n1 + n2)/2.0;
+   } // end method square with int argument
+
+   // square method with double argument
+   public static double ave(double n1,double n2,double n3 )
+   {
+    
+      return ((n1+n2+n3)/3.0);
+   } // end method square with double argument
+}
+
+run:
+The average of 2.0,2.5,and 3.0 is 2.50
+The average of 2.0,2.5,and 3.0 is 5.00
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+

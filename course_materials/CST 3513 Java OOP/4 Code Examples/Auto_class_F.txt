@@ -1,0 +1,512 @@
+
+
+
+//  Auto class, Version 1
+
+1.1
+
+package javaapplication75;
+
+
+public class Auto {
+   // instance variables
+
+    private String model;          //  model of auto
+    private int milesDriven;       //  number of miles driven
+    private double gallonsOfGas;   //  number of gallons of gas
+
+    // Default constructor:
+    //  initializes model to "unknown";
+    //  milesDriven is auto-initialized to 0
+    //        and gallonsOfGas to 0.0
+
+    public Auto( )
+    {
+       model = "unknown";
+    }
+
+    // Overloaded constructor:
+    // allows client to set beginning values for
+    //   model, milesDriven, and gallonsOfGas.
+
+    public Auto( String startModel,
+                 int startMilesDriven,
+                 double startGallonsOfGas )
+    {
+       model = startModel;
+
+       // validate startMiles parameter
+
+       if ( startMilesDriven >= 0 )
+           milesDriven = startMilesDriven;
+       else
+       {
+           System.err.println( "Miles driven is negative." );
+           System.err.println( "Value set to 0." );
+       }
+
+       // validate startGallonsOfGas parameter
+
+       if ( startGallonsOfGas >= 0.0 )
+           gallonsOfGas = startGallonsOfGas;
+       else
+       {
+           System.err.println( "Gallons of gas is negative" );
+           System.err.println( "  Value set to 0.0." );
+       }
+    }  
+}
+
+1.2
+
+
+package javaapplication75;
+
+public class JavaApplication75 {
+
+    
+    public static void main(String[] args) {
+        System.out.println( "Instantiate sedan" );
+         
+      Auto sedan = new Auto( );       
+      Auto suv = new Auto( "  Trailblazer", 7000, -437.5 );
+       System.out.print( "Instantiate suv" );
+    
+
+    }
+    
+}
+
+
+run:
+Instantiate sedan
+Gallons of gas is negative
+  Value set to 0.0.
+Instantiate suvBUILD SUCCESSFUL (total time: 0 seconds)
+
+
+
+
+
+
+
+
+2.1.
+
+// Auto class, Version 2
+   
+public class Auto
+{
+    // instance variables
+
+    private String model;          //  model of auto
+    private int milesDriven;       //  number of miles driven
+    private double gallonsOfGas;   //  number of gallons of gas
+
+    // Default constructor:
+    //  initializes model to "unknown";
+    //  milesDriven is auto-initialized to 0
+    //        and gallonsOfGas to 0.0
+
+    public Auto( )
+    {
+       model = "unknown";
+    }
+
+    // Overloaded constructor:
+    // allows client to set beginning values for
+    //   model, milesDriven, and gallonsOfGas.
+
+    public Auto( String startModel,
+                 int startMilesDriven,
+                 double startGallonsOfGas )
+    {
+       model = startModel;
+
+       // validate startMiles parameter
+
+       if ( startMilesDriven >= 0 )
+          milesDriven = startMilesDriven;
+       else
+       {
+          System.err.println( "Miles driven is negative." );
+          System.err.println( "Value set to 0." );
+       }
+
+       // validate startGallonsOfGas parameter
+
+       if ( startGallonsOfGas >= 0.0 )
+          gallonsOfGas = startGallonsOfGas;
+       else
+       {
+          System.err.println( "Gallons of gas is negative" );
+          System.err.println( "Value set to 0.0." );
+       }
+    }
+
+    // Accessor method:
+    // returns current value of model
+
+    public String getModel( )
+    {
+       return model;
+    }
+
+    // Accessor method:
+    // returns current value of milesDriven
+
+    public int getMilesDriven( )
+    {
+       return milesDriven;
+    }
+
+    // Accessor method:
+    //  returns current value of gallonsOfGas
+    public double getGallonsOfGas( )
+    {
+       return gallonsOfGas;
+    }
+}
+
+
+2.2
+
+// Auto Client, version 2
+   
+
+
+public class AutoClient
+{
+    public static void main( String [] args )
+    {
+        Auto sedan = new Auto( );
+        String sedanModel = sedan.getModel( );
+        int sedanMiles = sedan.getMilesDriven( );
+        double sedanGallons = sedan.getGallonsOfGas( );
+        System.out.println( "sedan: model is " + sedanModel
+                   + "\n miles driven is " + sedanMiles
+                   + "\n gallons of gas is " + sedanGallons );
+
+        Auto suv = new Auto( "Trailblazer", 7000, 437.5 );
+        String suvModel = suv.getModel( );
+        int suvMiles = suv.getMilesDriven( );
+        double suvGallons = suv.getGallonsOfGas( );
+        System.out.println( "suv: model is " + suvModel
+                   + "\n miles driven is " + suvMiles
+                   + "\n gallons of gas is " + suvGallons );
+    }
+}
+
+run:
+sedan: model is unknown
+ miles driven is 0
+ gallons of gas is 0.0
+suv: model is Trailblazer
+ miles driven is 7000
+ gallons of gas is 437.5
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+
+
+
+
+3.1
+
+// Auto class, Version 3
+   
+
+
+public class Auto
+{
+    // instance variables
+
+    private String model;          //  model of auto
+    private int milesDriven;       //  number of miles driven
+    private double gallonsOfGas;   //  number of gallons of gas
+
+    // Default constructor:
+    //  initializes model to "unknown";
+    //  milesDriven is auto-initialized to 0
+    //        and gallonsOfGas to 0.0
+
+    public Auto( )
+    {
+       model = "unknown";
+    }
+
+    // Overloaded constructor:
+    // allows client to set beginning values for
+    //   model, milesDriven, and gallonsOfGas.
+
+    public Auto( String startModel,
+                 int startMilesDriven,
+                 double startGallonsOfGas )
+    {
+       model = startModel;
+       setMilesDriven( startMilesDriven );
+       setGallonsOfGas( startGallonsOfGas );
+    }
+
+    // Accessor method:
+    // returns current value of model
+
+    public String getModel( )
+    {
+      return model;
+    }
+
+    // Accessor method:
+    // returns current value of milesDriven
+
+    public int getMilesDriven( )
+    {
+      return milesDriven;
+    }
+
+    // Accessor method:
+    //  returns current value of gallonsOfGas
+
+    public double getGallonsOfGas( )
+    {
+      return gallonsOfGas;
+    }
+
+    // Mutator method:
+    // allows client to set model
+
+    public void setModel( String newModel )
+    {
+      model = newModel;
+    }
+
+    // Mutator method:
+    // allows client to set value of milesDriven;
+    // prints an error message if new value is less than 0
+
+    public void setMilesDriven( int newMilesDriven )
+    {
+      if ( newMilesDriven >= 0 )
+        milesDriven = newMilesDriven;
+      else
+      {
+        System.err.println( "Miles driven cannot be negative." );
+        System.err.println( "Value not changed." );
+      }
+    }
+
+    // Mutator method:
+    // allows client to set value of gallonsOfGas;
+    // prints an error message if new value is less than 0.0
+
+    public void setGallonsOfGas( double newGallonsOfGas )
+    {
+      if ( newGallonsOfGas >= 0.0 )
+        gallonsOfGas = newGallonsOfGas;
+      else
+      {
+        System.err.println( "Gallons of gas cannot be negative." );
+        System.err.println( "Value not changed." );
+      }
+    }
+}
+
+3.2
+
+// Auto Client, Version 3
+   
+
+
+public class AutoClient
+{
+  public static void main( String [] args )
+  {
+     Auto suv = new Auto( "Trailblazer", 7000, 437.5 );
+
+     // print initial values of instance variables
+     System.out.println( "suv: model is " + suv.getModel( )
+            + "\n miles driven is " + suv.getMilesDriven( )
+            + "\n gallons of gas is " + suv.getGallonsOfGas( ) );
+
+     // call mutator method for each instance variable
+
+     suv.setModel( "Sportage" );
+     suv.setMilesDriven( 200 );
+     suv.setGallonsOfGas( 10.5 );
+
+     // print new values of instance variables
+
+     System.out.println( "\nsuv: model is " + suv.getModel( )
+            + "\n miles driven is " + suv.getMilesDriven( )
+            + "\n gallons of gas is " + suv.getGallonsOfGas( ) );
+
+     // attempt to set invalid value for milesDriven
+
+     suv.setMilesDriven( -1 );
+
+     // print current values of instance variables
+
+     System.out.println( "\nsuv: model is " + suv.getModel( )
+            + "\n miles driven is " + suv.getMilesDriven( )
+            + "\n gallons of gas is " + suv.getGallonsOfGas( ) );
+  }
+}
+
+run:
+suv: model is Trailblazer
+Miles driven cannot be negative.
+ miles driven is 7000
+Value not changed.
+ gallons of gas is 437.5
+
+suv: model is Sportage
+ miles driven is 200
+ gallons of gas is 10.5
+
+suv: model is Sportage
+ miles driven is 200
+ gallons of gas is 10.5
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+
+
+4.1
+
+// Auto class, Version 4
+   
+
+
+public class Auto
+{
+     // instance variables
+
+     private String model;          //  model of auto
+     private int milesDriven;       //  number of miles driven
+	  private double gallonsOfGas;   //  number of gallons of gas
+	  
+     // Default constructor:
+     //  initializes model to "unknown";
+     //  milesDriven is auto-initialized to 0
+     //        and gallonsOfGas to 0.0
+
+     public Auto( )
+     {
+        model = "unknown";
+     }
+
+     // Overloaded constructor:
+     // allows client to set beginning values for
+     //   model, milesDriven, and gallonsOfGas.
+
+     public Auto( String startModel,
+                  int startMilesDriven,
+                  double startGallonsOfGas )
+     {
+        model = startModel;
+        setMilesDriven( startMilesDriven );
+        setGallonsOfGas( startGallonsOfGas );
+     }
+
+     // Accessor method:
+     // returns current value of model
+
+     public String getModel( )
+     {
+        return model;
+     }
+
+     // Accessor method:
+     // returns current value of milesDriven
+
+     public int getMilesDriven( )
+     {
+        return milesDriven;
+     }
+
+     // Accessor method:
+     // returns current value of gallonsOfGas
+
+     public double getGallonsOfGas( )
+     {
+        return gallonsOfGas;
+     }
+
+     // Mutator method:
+     // allows client to set model
+
+     public void setModel( String newModel )
+     {
+         model = newModel;
+     }
+
+     // Mutator method:
+     // allows client to set value of milesDriven;
+     // prints an error message if new value is less than 0
+
+     public void setMilesDriven( int newMilesDriven )
+     {
+        if ( newMilesDriven >= 0 )
+           milesDriven = newMilesDriven;
+        else
+        {
+          System.err.println( "Miles driven cannot be negative." );
+          System.err.println( "Value not changed." );
+        }
+     }
+
+     // Mutator method:
+     // allows client to set value of gallonsOfGas;
+     // prints an error message if new value is less than 0.0
+
+     public void setGallonsOfGas( double newGallonsOfGas )
+     {
+        if ( newGallonsOfGas >= 0.0 )
+         gallonsOfGas = newGallonsOfGas;
+        else
+        {
+         System.err.println( "Gallons of gas cannot be negative." );
+         System.err.println( "Value not changed." );
+        }
+     }
+
+     // Calculates miles per gallon.
+     //  if no gallons of gas have been used, returns 0.0;
+     //  otherwise, returns miles per gallon
+     //        as milesDriven / gallonsOfGas
+
+     public double calculateMilesPerGallon( )
+     {
+        if ( gallonsOfGas != 0.0 )
+          return milesDriven / gallonsOfGas;
+        else
+          return 0.0;
+     }
+ }
+
+4.2
+
+// Auto Client, Version 4
+   
+
+
+public class AutoClient
+{
+   public static void main( String [] args )
+   {
+      Auto suv = new Auto( "Trailblazer", 7000, 437.5 );
+
+     double mileage = suv.calculateMilesPerGallon( );
+     System.out.println( "Mileage for suv is "
+                          + mileage );
+   }
+}
+
+run:
+Mileage for suv is 16.0
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+
+
+

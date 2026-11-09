@@ -1,0 +1,344 @@
+
+1.
+
+public class SimpleMethod
+{
+   public static void main(String[] args)
+   {
+      System.out.println("Hello from the main method.");
+      displayMessage();
+      System.out.println("Back in the main method.");
+   }
+   
+  
+   
+   public static void displayMessage()
+   {
+      System.out.println("Hello from the displayMessage method.");
+   }
+}
+
+1.1
+
+
+public class Message {
+
+    
+    public static void main(String[] args) {
+
+         System.out.println("Hello Debra!");
+      printMessage();
+      System.out.println("Goodbye.");
+    }
+
+// definition of method printMessage
+   public static void printMessage()
+   {
+      System.out.println("A message for you.");
+         System.out.println("Have a nice day!.");
+   }
+}
+
+1.2.
+
+
+public class Message {
+
+    public static void main(String[] args) {
+
+         System.out.println("Hello Debra!");
+      printMessage(5);
+      System.out.println("Goodbye.");
+    }
+
+// definition of method printMessage
+
+   public static void printMessage(int howManyTimes)
+   {
+        // formal parameter is howManyTimes
+
+      System.out.println("A message for you.");
+      for(int i=0;i<howManyTimes;i++)
+         System.out.println("Have a nice day!.");
+   }
+}
+
+
+
+
+2. 
+
+public class LoopCall
+{
+   public static void main(String[] args)
+   {
+      System.out.println("Hello from the main method.");
+      for (int i = 0; i < 5; i++)
+         displayMessage();
+      System.out.println("Back in the main method.");
+   }
+   
+   
+   
+   public static void displayMessage()
+   {
+      System.out.println("Hello from the displayMessage method.");
+   }
+}
+
+
+
+3.
+
+public class PassArg
+{
+   public static void main(String[] args)
+   {
+      int x = 10;
+
+      System.out.println("I am passing values to displayValue.");
+      displayValue(5);                       // Pass 5
+      displayValue(x);                       // Pass 10
+      displayValue(x * 4);                   // Pass 40
+      -
+      System.out.println("Now I am back in main.");
+   }
+   
+
+   
+   public static void displayValue(int num)
+   {
+      System.out.println("The value is " + num);
+   }
+}
+
+
+
+
+4.
+
+public class DeepAndDeeper
+{
+   public static void main(String[] args)
+   {
+      System.out.println("I am starting in main.");
+      deep();
+      System.out.println("Now I am back in main.");   
+   }
+   
+ 
+   
+   public static void deep()
+   {
+      System.out.println("I am now in deep.");
+      deeper();
+      System.out.println("Now I am back in deep.");
+   }
+
+
+   
+   public static void deeper()
+   {
+      System.out.println("I am now in deeper.");
+   }
+}
+
+
+
+5.
+
+public class PassByValue
+{
+   public static void main(String[] args)
+   {
+      int number = 99; // number starts with 99
+      
+      // Display the value in number.
+      System.out.println("number is " + number);
+      
+      // Call changeMe, passing the value in number
+      // as an argument.
+      changeMe(number);
+      
+      // Display the value in number again.
+      System.out.println("number is " + number);
+   }
+   
+  
+   
+   public static void changeMe(int myValue)
+   {
+      System.out.println("I am changing the value.");
+      
+      // Change the myValue parameter variable to 0.
+      myValue = 0;
+      
+      // Display the value in myValue.
+      System.out.println("Now the value is " + myValue);
+   }
+}
+
+
+
+
+
+6.
+
+public class TwoArgs
+{
+   public static void main(String[] args)
+   {
+      double a = 4.5;
+      double b = 6.9;
+      
+      showSum(a, b);
+   }
+   
+  
+   
+   public static void showSum(double num1, double num2)
+   {
+      double sum;    // To hold the sum
+      
+      sum = num1 + num2;
+      System.out.println("The sum is " + sum);
+   }
+}
+
+
+
+7.
+
+public class TwoArgs2
+{
+   public static void main(String[] args)
+   {
+      double a = 4.5;
+      double b = 6.9;
+      
+      showSum(a, b);
+   }
+   
+
+
+   
+   public static void showSum(double num1, double num2)
+   {
+      double sum;    // To hold the sum
+      
+      sum = num1 + num2;
+      System.out.println("The sum is " + sum);
+   }
+}
+
+
+
+8.
+
+public class LocalVars
+{
+   public static void main(String[] args)
+   {
+      texas();
+      california();
+   }
+   
+ 
+   
+   public static void texas()
+   {
+      int birds = 5000;
+      
+      System.out.println("In texas there are " +
+                         birds + " birds.");
+   }
+   
+
+   public static void california()
+   {
+      int birds = 3500;
+
+      System.out.println("In california there are " +
+                         birds + " birds.");
+   }
+}
+
+
+
+9.
+
+public class ValueReturn
+{
+   public static void main(String[] args)
+   {
+      int total, value1 = 20, value2 = 40;
+      
+      // Call the sum method, passing the contents of
+      // value1 and value2 as arguments. Assign the
+      // return value to the total variable.
+      total = sum(value1, value2);
+      
+      // Display the contents of all these variables.
+      System.out.println("The sum of " + value1 +
+                         " and " + value2 + " is " +
+                         total);
+   }
+   
+    
+   public static int sum(int num1, int num2)
+   {
+      int result;  // result is a local variable
+
+      // Assign the value of num1 + num2 to result.
+      result = num1 + num2;
+      
+      // Return the value in the result variable.
+      return result;
+   }  
+}
+
+
+
+10.
+
+
+
+package javamethod;
+
+public class UserMethod {
+
+    public static void main(String[] args) {
+ int total, value1 = 20, value2 = 40;
+
+      // Call the sum method, passing the contents of
+      // value1 and value2 as arguments. Assign the
+      // return value to the total variable.
+  System.out.println("Before the function call Value1= " + value1 +
+                         " and Value2= " + value2);
+      total = sum(value1, value2);
+  System.out.println("After the function call Value1= " + value1 +
+                         " and Value2= " + value2);
+
+      // Display the contents of all these variables.
+      System.out.println(" sum= " + total);
+                        
+   }
+
+  public static int sum(int num1, int num2)
+   {
+      int result;  // result is a local variable
+ // Assign new values to num1  and num2 .
+      num1=15;
+      num2=10;
+      // Assign the value of num1 + num2 to result.
+      result = num1 + num2;
+
+      // Return the value in the result variable.
+      return result;
+   }  
+    }
+
+
+
+
+

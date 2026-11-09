@@ -1,0 +1,58 @@
+
+
+
+
+// Demonstrate invoking a constructor through this reference
+1.
+package javaapplication69;
+public class XYCoord {
+  public int x, y;   
+   
+  public XYCoord()  { 
+        this(0, 0);
+    System.out.println("Inside XYCoord()"); 
+  }  
+ 
+  public XYCoord(XYCoord obj)  { 
+       this(obj.x, obj.y);
+    System.out.println("Inside XYCoord(obj)"); 
+  }  
+ 
+  public XYCoord(int i, int j) {  
+    System.out.println("Inside XYCoord(int, int)"); 
+    x = i; 
+    y = j; 
+   } 
+}
+
+
+1.2
+
+package javaapplication69;
+public class OverloadConsDemo {
+
+   
+    public static void main(String[] args) {
+
+    XYCoord t1 = new XYCoord();   
+    XYCoord t2 = new XYCoord(8, 9);   
+    XYCoord t3 = new XYCoord(t2);   
+   
+     System.out.println("t1.x, t1.y: " + t1.x + ", " + t1.y);  
+     System.out.println("t2.x, t2.y: " + t2.x + ", " + t2.y);  
+     System.out.println("t3.x, t3.y: " + t3.x + ", " + t3.y); 
+     
+    }
+}
+
+run:
+Inside XYCoord(int, int)
+Inside XYCoord()
+Inside XYCoord(int, int)
+Inside XYCoord(int, int)
+Inside XYCoord(obj)
+t1.x, t1.y: 0, 0
+t2.x, t2.y: 8, 9
+t3.x, t3.y: 8, 9
+BUILD SUCCESSFUL (total time: 1 second)
+

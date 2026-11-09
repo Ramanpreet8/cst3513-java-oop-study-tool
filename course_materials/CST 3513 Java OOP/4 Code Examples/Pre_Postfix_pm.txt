@@ -1,0 +1,71 @@
+    package javaapplication113;
+
+public class JavaApplication113 {
+
+    public static void main(String[] args) {
+            int k, n;
+    n=5;
+
+    k= ++n;
+   
+  System.out.println("k= " + k + " n= "  + n);
+
+   k= n++;
+  
+     System.out.println("k= " + k + " n= " + n);
+
+   k= --n;
+
+   System.out.println("k= " + k + " n= " + n);
+
+   k= n--;
+
+   System.out.println("k= " + k + " n= " + n);
+    }
+    
+}
+
+run:
+k= 6 n= 6
+k= 6 n= 7
+k= 6 n= 6
+k= 6 n= 5
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+// Program 2
+// Demonstrate the difference between prefix 
+// postfix forms of ++. 
+ 
+package javaapplication113;
+public class JavaApplication113 {
+    public static void main(String[] args) {
+      int k, n;
+    n=5;
+
+    k= ++n + 1;
+
+  System.out.println("k= " + k + " n= "  + n);
+
+   k= n++ + 3;
+
+     System.out.println("k= " + k + " n= " + n);
+
+   k= --n - 1;
+
+   System.out.println("k= " + k + " n= " + n);
+
+   k= n-- + 4;
+
+   System.out.println("k= " + k + " n= " + n);
+    }
+    
+}
+
+run:
+k= 7 n= 6
+k= 9 n= 7
+k= 5 n= 6
+k= 10 n= 5
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+

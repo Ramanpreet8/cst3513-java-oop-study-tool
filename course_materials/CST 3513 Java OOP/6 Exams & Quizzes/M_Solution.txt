@@ -1,0 +1,142 @@
+5.
+package javaapplication239;
+public class Rectangle {
+   private double length;
+   private double width;
+public Rectangle(double len, double w){
+         length = len;
+         width = w;
+   }
+
+  // Your code goes here 
+   public void getSidesPrinted() {
+       System.out.println("legth is" +length);
+       System.out.println("width is" + width);
+   }
+}
+package javaapplication239;
+public class JavaApplication239 {
+  public static void main(String[] args) {
+    Rectangle rectangle = new Rectangle(5.0, 15.0);
+    System.out.println(rectangle); // not allowed to change
+    rectangle.getSidesPrinted();
+    }   
+}
+run:
+javaapplication239.Rectangle@15db9742
+legth is5.0
+width is15.0
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+7.
+Solution No.1
+package javaapplication240;
+public class Rectangle {
+   private double length;
+   private double width;
+   public Rectangle( ){
+    length = 5.0;
+    width = 10.0;
+ }   
+public Rectangle(double length, double width){   
+    this.length = length;
+    this.width = width;
+  }                  
+ public double getLength()  {  return length; }
+ public double getWidth()  { return width;  }
+}
+
+package javaapplication240;
+public class JavaApplication240 {
+    public static void main(String[] args) {
+       Rectangle rect1 = new Rectangle();
+       Rectangle rect2 = new Rectangle(15.0, 20.0);
+       System.out.println("The Rectangle's length is " +rect1.getLength());             
+       System.out.println("The Rectangle's width is " + rect1.getWidth());
+       System.out.println("The Rectangle's length is " +rect2.getLength());
+       System.out.println("The Rectangle's width is " +rect2.getWidth());  
+  }
+ }
+
+run:
+The Rectangle's length is 5.0
+The Rectangle's width is 10.0
+The Rectangle's length is 15.0
+The Rectangle's width is 20.0
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+// 2nd Solution
+
+package javaapplication240;
+public class Rectangle {
+   private double length;
+   private double width;
+   public Rectangle( ){
+    length = 5.0;
+    width = 10.0;
+ }   
+public Rectangle(double length, double width){   
+     length= length;
+     width = width;
+   }                  
+  public double getLength()  {  return length; }
+  public double getWidth()  { return width;  }
+ }    
+
+package javaapplication240;
+public class JavaApplication240 {
+    public static void main(String[] args) {
+       Rectangle rect1 = new Rectangle();
+       Rectangle rect2 = new Rectangle(15.0, 20.0);
+       System.out.println("The Rectangle's length is " +rect1.getLength());             
+       System.out.println("The Rectangle's width is " + rect1.getWidth());
+       System.out.println("The Rectangle's length is " +rect2.getLength());
+       System.out.println("The Rectangle's width is " +rect2.getWidth());  
+
+    }   
+}
+
+run:
+The Rectangle's length is 5.0
+The Rectangle's width is 10.0
+The Rectangle's length is 0.0
+The Rectangle's width is 0.0
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+// 3rd Solution
+
+package javaapplication240;
+public class Rectangle {
+   private double length;
+   private double width;
+   public Rectangle( ){
+    length = 5.0;
+    width = 10.0;
+ }   
+public Rectangle(double length, double width){   
+     length= 15.0;
+     width = 20.0;
+   }                  
+  public double getLength()  {  return length; }
+  public double getWidth()  { return width;  }
+}
+
+package javaapplication240;
+public class JavaApplication240 {
+    public static void main(String[] args) {
+       Rectangle rect1 = new Rectangle();
+       Rectangle rect2 = new Rectangle(15.0, 20.0);
+       System.out.println("The Rectangle's length is " +rect1.getLength());             
+       System.out.println("The Rectangle's width is " + rect1.getWidth());
+       System.out.println("The Rectangle's length is " +rect2.getLength());
+       System.out.println("The Rectangle's width is " +rect2.getWidth());  
+
+    }   
+}
+
+run:
+The Rectangle's length is 5.0
+The Rectangle's width is 10.0
+The Rectangle's length is 0.0
+The Rectangle's width is 0.0
+BUILD SUCCESSFUL (total time: 0 seconds)

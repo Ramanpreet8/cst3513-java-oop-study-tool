@@ -1,0 +1,97 @@
+
+1.1
+
+//  Date.java
+// Date class with instance variables for the month, day and year.
+
+public class Date
+{
+   private int month;
+   private int day;
+   private int year;
+
+   // constructor
+   public Date( int monthValue, int dayValue, int yearValue )
+   {
+      month = monthValue;
+      day = dayValue;
+      year = yearValue;
+   } // end three-argument constructor
+
+   // set the month
+   public void setMonth( int monthValue )
+   {
+      month = monthValue;
+   } // end method setMonth
+
+   // return the month
+   public int getMonth()
+   {
+      return month;
+   } // end method getMonth
+
+   // set the day
+   public void setDay( int dayValue )
+   {
+      day = dayValue;
+   } // end method setDay
+
+   // return the day
+   public int getDay()
+   {
+      return day;
+   } // end method getDay
+
+   // set the year
+   public void setYear( int yearValue )
+   {
+      year = yearValue;
+   } // end method setYear
+
+   // return the year
+   public int getYear()
+   {
+      return year;
+   } // end method getYear
+
+   // display the date
+   public void displayDate()
+   {
+      System.out.printf( "%d/%d/%d", getMonth(), getDay(), getYear() );
+   } // end method displayDate
+} // end class Date
+
+1.2
+
+//  DateTest.java
+// Application to test class Date.
+
+public class DateTest
+{
+   public static void main( String[] args )
+   {
+      Date date1 = new Date( 7, 4, 2004 );
+      
+      System.out.print( "The initial date is: " );
+      date1.displayDate();
+
+      // change date values
+      date1.setMonth( 11 );
+      date1.setDay( 1 );
+      date1.setYear( 2003 );
+
+      System.out.print( "\nDate with new values is: " );
+      date1.displayDate();
+
+      System.out.println(); // output a newline
+   } // end main
+} // end class DateTest
+
+
+run:
+The initial date is: 7/4/2004
+Date with new values is: 11/1/2003
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+

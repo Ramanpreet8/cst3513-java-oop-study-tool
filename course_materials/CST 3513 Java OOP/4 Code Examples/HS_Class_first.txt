@@ -1,0 +1,438 @@
+1. // one program
+
+
+
+package javaapplication82;
+public class Building {
+public int Floors;    // number of floors
+  public int Area;      // total square footage of building
+  public int Occupants; // number of occupants
+
+    public static void main(String[] args) {
+       Building house = new Building(); // create a Building object
+    int areaPP; // area per person
+
+    // Assign values to fields in house.
+    house.Occupants = 4;
+    house.Area = 2500;
+    house.Floors = 2;
+
+    // Compute the area per person.
+    areaPP = house.Area / house.Occupants;
+
+  System.out.println("house has:\n  " +
+                      house.Floors + " floors\n  " +
+                      house.Occupants + " occupants\n  " +
+                      house.Area + " total area\n  " +
+                      areaPP + " area per person");
+    }
+
+}
+
+1.1
+
+package javaapplication74;
+// A program that uses the Building class.
+
+public class Building {
+  public int Floors;    // number of floors
+  public int Area;      // total square footage of building
+  public int Occupants; // number of occupants
+}
+
+1.2
+
+package javaapplication74; 
+// This class declares an object of type Building. 
+
+public class BuildingDemo {
+
+    public static void main(String[] args) {
+       Building house = new Building(); // create a Building object
+    int areaPP; // area per person
+
+    // Assign values to fields in house.
+    house.Occupants = 4;
+    house.Area = 2500;
+    house.Floors = 2;
+
+    // Compute the area per person.
+    areaPP = house.Area / house.Occupants;
+
+  System.out.println("house has:\n  " +
+                      house.Floors + " floors\n  " +
+                      house.Occupants + " occupants\n  " +
+                      house.Area + " total area\n  " +
+                      areaPP + " area per person");
+    }
+
+}
+
+
+run:
+house has:
+  2 floors
+  4 occupants
+  2500 total area
+  625 area per person
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+2.1
+
+
+package javaapplication74;
+// This program creates two Building objects.
+
+public class Building {
+public int Floors;    // number of floors
+  public int Area;      // total square footage of building
+  public int Occupants; // number of occupants
+}
+
+
+2.2
+
+
+package javaapplication74;
+// This class declares two objects of type Building.
+
+public class BuildingDemo {
+
+    public static void main(String[] args) {
+       Building house = new Building();
+    Building office = new Building();
+
+    int areaPP; // area per person
+
+    // Assign values to fields in house.
+    house.Occupants = 4;
+    house.Area = 2500;
+    house.Floors = 2;
+
+    // Assign values to fields in office.
+    office.Occupants = 25;
+    office.Area = 4200;
+    office.Floors = 3;
+
+    // Compute the area per person in house.
+    areaPP = house.Area / house.Occupants;
+
+  System.out.println("house has:\n  " +
+                      house.Floors + " floors\n  " +
+                      house.Occupants + " occupants\n  " +
+                      house.Area + " total area\n  " +
+                      areaPP + " area per person");
+
+      System.out.println();
+
+    // Compute the area per person in office.
+    areaPP = office.Area / office.Occupants;
+
+  System.out.println ("office has:\n  " +
+                      office.Floors + " floors\n  " +
+                      office.Occupants + " occupants\n  " +
+                      office.Area + " total area\n  " +
+                      areaPP + " area per person");
+    }
+
+}
+
+
+run:
+house has:
+  2 floors
+  4 occupants
+  2500 total area
+  625 area per person
+
+office has:
+  3 floors
+  25 occupants
+  4200 total area
+  168 area per person
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+3.1
+
+package javaapplication74;
+// Add a method to Building.     
+class Building {   
+  public int Floors;    // number of floors 
+  public int Area;      // total square footage of building 
+  public int Occupants; // number of occupants 
+ 
+  // Display the area per person.  
+  public void AreaPerPerson() {  
+System.out.println("  " + Area / Occupants + " area per person");
+}
+}
+
+
+3.2
+
+
+package javaapplication74;
+// Use the AreaPerPerson() method.
+
+public class BuildingDemo {
+
+
+    public static void main(String[] args) {
+       Building house = new Building();
+    Building office = new Building();
+
+    int areaPP; // area per person
+
+    // Assign values to fields in house.
+    house.Occupants = 4;
+    house.Area = 2500;
+    house.Floors = 2;
+
+    // Assign values to fields in office.
+    office.Occupants = 25;
+    office.Area = 4200;
+    office.Floors = 3;
+
+    // Compute the area per person in house.
+    areaPP = house.Area / house.Occupants;
+
+  System.out.println("house has:\n  " +
+                      house.Floors + " floors\n  " +
+                      house.Occupants + " occupants\n  " +
+                      house.Area + " total area\n  " +
+                      areaPP + " area per person");
+
+      System.out.println();
+
+    // Compute the area per person in office.
+    areaPP = office.Area / office.Occupants;
+
+  System.out.println ("office has:\n  " +
+                      office.Floors + " floors\n  " +
+                      office.Occupants + " occupants\n  " +
+                      office.Area + " total area\n  " +
+                      areaPP + " area per person");
+  office.AreaPerPerson();
+    }
+
+}
+
+
+
+
+
+run:
+house has:
+  2 floors
+  4 occupants
+  2500 total area
+  625 area per person
+
+office has:
+  3 floors
+  25 occupants
+  4200 total area
+  168 area per person
+  168 area per person
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+
+4.1
+
+package javaapplication74;
+// Return a value from AreaPerPerson().
+class Building {
+ public int Floors;    // number of floors
+  public int Area;      // total square footage of building
+  public int Occupants; // number of occupants
+
+  // Return the area per person.
+  public int AreaPerPerson() {
+    return Area / Occupants;
+}
+}
+
+
+4.2
+
+
+package javaapplication74;
+// Use the return value from AreaPerPerson().
+
+public class BuildingDemo {
+
+ 
+    public static void main(String[] args) {
+          Building house = new Building();
+    Building office = new Building();
+    int areaPP; // area per person
+
+    // Assign values to fields in house.
+    house.Occupants = 4;
+    house.Area = 2500;
+    house.Floors = 2;
+
+    // Assign values to fields in office.
+    office.Occupants = 25;
+    office.Area = 4200;
+    office.Floors = 3;
+
+    // Obtain area per person for house.
+    areaPP = house.AreaPerPerson();
+
+ System.out.println ("house has:\n  " +
+                      house.Floors + " floors\n  " +
+                      house.Occupants + " occupants\n  " +
+                      house.Area + " total area\n  " +
+                      areaPP + " area per person");
+
+
+    System.out.println ();
+
+    // Obtain area per person for office.
+    areaPP = office.AreaPerPerson();
+
+ System.out.println  ("office has:\n  " +
+                      office.Floors + " floors\n  " +
+                      office.Occupants + " occupants\n  " +
+                      office.Area + " total area\n  " +
+                      areaPP + " area per person");
+
+  
+    }
+
+}
+
+
+
+
+
+
+run:
+house has:
+  2 floors
+  4 occupants
+  2500 total area
+  625 area per person
+
+office has:
+  3 floors
+  25 occupants
+  4200 total area
+  168 area per person
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+5.1
+ // A parameterized constructor for Building.
+
+
+
+package javaapplication74;
+// Return a value from AreaPerPerson().
+class Building {
+  public int Floors;    // number of floors
+  public int Area;      // total square footage of building
+  public int Occupants; // number of occupants
+
+  // A parameterized constructor for Building.
+  public Building(int f, int a, int o) {
+    Floors = f;
+    Area = a;
+    Occupants = o;
+  }
+
+  // Display the area per person.
+  public int AreaPerPerson() {
+    return Area / Occupants;
+  }
+
+  // Return the maximum number of occupants if each
+  // is to have at least the specified minimum area.
+  public int MaxOccupant(int minArea) {
+    return Area / minArea;
+  } 
+}
+
+
+
+5.2 
+//  // A parameterized constructor for Building.
+
+
+
+package javaapplication74;
+// Use the return value from AreaPerPerson().
+
+public class BuildingDemo {
+
+  
+    public static void main(String[] args) {
+
+ Building house = new Building(2, 2500, 4);
+    Building office = new Building(3, 4200, 25);
+
+ System.out.println ("Maximum occupants for house if each has " +
+                      300 + " square feet: " +
+                      house.MaxOccupant(300));
+
+ System.out.println ("Maximum occupants for office if each has " +
+                      300 + " square feet: " +
+                      office.MaxOccupant(300));
+   
+  
+    }
+
+}
+
+
+6.1
+
+
+
+package javaapplication76;
+
+
+public class Rect {
+ public int Width;
+  public int Height;
+
+  public Rect(int w, int h) {
+    Width = w;
+    Height = h;
+  }
+
+  public int Area() {
+    return Width * Height;
+  } 
+}
+
+6.2
+
+// Rectangle
+
+package javaapplication76;
+
+public class UseRect {
+    
+    public static void main(String[] args) {
+        Rect r1 = new Rect(4, 5); 
+    Rect r2 = new Rect(7, 9); 
+ 
+ System.out.println("Area of r1: " + r1.Area()); 
+ 
+    System.out.println("Area of r2: " + r2.Area()); 
+    }
+
+}
+
+
+run:
+Area of r1: 20
+Area of r2: 63
+BUILD SUCCESSFUL (total time: 1 second)
+
+

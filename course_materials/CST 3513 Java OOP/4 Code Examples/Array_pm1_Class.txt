@@ -1,0 +1,364 @@
+// Java_Array
+
+1.// Demonstrate a one-dimensional array.
+
+
+
+package javaapplication90;
+
+
+public class ArryDemo {
+
+    public static void main(String[] args) {
+    int[] sample = new int[10];
+    int i;
+
+    for(i = 0; i < 10; i = i+1)
+      sample[i] = i;
+
+    for(i = 0; i < 10; i = i+1)
+ System.out.println("sample[" + i + "]: " + sample[i]);
+    }
+
+}
+
+run:
+sample[0]: 0
+sample[1]: 1
+sample[2]: 2
+sample[3]: 3
+sample[4]: 4
+sample[5]: 5
+sample[6]: 6
+sample[7]: 7
+sample[8]: 8
+sample[9]: 9
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+2.// Compute the average of a set of values. 
+
+
+
+package javaapplication90;
+
+public class ArryDemo {
+
+    public static void main(String[] args) {
+int[] nums = new int[10];
+    int avg = 0;
+
+    nums[0] = 99;
+    nums[1] = 10;
+    nums[2] = 100;
+    nums[3] = 18;
+    nums[4] = 78;
+    nums[5] = 23;
+    nums[6] = 63;
+    nums[7] = 9;
+    nums[8] = 87;
+    nums[9] = 49;
+
+    for(int i=0; i < 10; i++)
+      avg = avg + nums[i];
+
+    avg = avg / 10;
+
+  System.out.println("Average: " + avg);
+
+    }
+
+}
+
+
+run:
+Average: 53
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+3.// Compute the average of a set of values.
+
+
+
+package javaapplication90;
+
+public class ArryDemo {
+
+    public static void main(String[] args) {
+
+        int[] nums = { 99, 10, 100, 18, 78, 23,
+                   63, 9, 87, 49 };
+    int avg = 0;
+
+    for(int i=0; i < 10; i++)
+      avg = avg + nums[i];
+
+    avg = avg / 10; 
+  System.out.println("Average: " + avg);
+
+    }
+
+}
+
+
+run:
+Average: 53
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+4.a
+
+//  InitArray.java
+// Initializing the elements of an array to default values of zero.
+
+public class InitArray 
+{
+   public static void main( String[] args )
+   {
+      int[] array; // declare array named array
+
+      array = new int[ 10 ]; // create the array object
+      
+      System.out.printf( "%s%8s\n", "Index", "Value" ); // column headings
+   
+      // output each array element's value 
+      for ( int counter = 0; counter < array.length; counter++ )
+         System.out.printf( "%5d%8d\n", counter, array[ counter ] );
+   } // end main
+} // end class InitArray
+
+4.b
+
+
+//  InitArray.java
+// Initializing the elements of an array with an array initializer.
+
+public class InitArray 
+{
+   public static void main( String[] args )
+   {
+      // initializer list specifies the value for each element
+      int[] array = { 32, 27, 64, 18, 95, 14, 90, 70, 60, 37 };
+
+      System.out.printf( "%s%8s\n", "Index", "Value" ); // column headings
+   
+      // output each array element's value 
+      for ( int counter = 0; counter < array.length; counter++ )
+         System.out.printf( "%5d%8d\n", counter, array[ counter ] );
+   } // end main
+} // end class InitArray
+
+4.c
+
+//  InitArray.java
+// Calculating values to be placed into elements of an array.
+
+public class InitArray 
+{
+   public static void main( String[] args )
+   {
+      final int ARRAY_LENGTH = 10; // constant
+      int[] array = new int[ ARRAY_LENGTH ]; // create array
+
+      // calculate value for each array element
+      for ( int counter = 0; counter < array.length; counter++ )
+         array[ counter ] = 2 + 2 * counter;
+
+      System.out.printf( "%s%8s\n", "Index", "Value" ); // column headings
+   
+      // output each array element's value 
+      for ( int counter = 0; counter < array.length; counter++ )
+         System.out.printf( "%5d%8d\n", counter, array[ counter ] );
+   } // end main
+} // end class InitArray
+
+5.
+
+//  SumArray.java
+// Computing the sum of the elements of an array.
+
+public class SumArray 
+{
+   public static void main( String[] args )
+   {
+      int[] array = { 87, 68, 94, 100, 83, 78, 85, 91, 76, 87 };
+      int total = 0;
+
+      // add each element's value to total
+      for ( int counter = 0; counter < array.length; counter++ )
+         total += array[ counter ];
+
+      System.out.printf( "Total of array elements: %d\n", total );
+   } // end main   
+} // end class SumArray
+
+
+
+6.// Use the Length array property. 
+
+
+package javaapplication90;
+
+
+public class ArryDemo {
+
+    
+    public static void main(String[] args) {
+int[] nums = new int[10];
+
+  System.out.println("Length of nums is " + nums.length);
+
+    // Use Length to initialize nums.
+    for(int i=0; i < nums.length; i++)
+      nums[i] = i * i;
+
+    // Now use Length to display nums.
+ System.out.print("Here is nums: ");
+    for(int i=0; i < nums.length; i++)
+     System.out.print(nums[i] + " ");
+
+System.out.println();
+ 
+    }
+
+}
+
+run:
+Length of nums is 10
+Here is nums: 0 1 4 9 16 25 36 49 64 81 
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+
+7.
+
+// Demonstrate an array overrun. 
+
+
+
+
+package javaapplication90;
+
+
+public class ArryDemo {
+
+    public static void main(String[] args) {
+int[] sample = new int[10];
+    int i;
+
+    // Generate an array overrun.
+    for(i = 0; i < 100; i = i+1)
+      sample[i] = i;
+ // System.out.println("Average: " + avg);
+ System.out.println("sample[" + i + "]: " + sample[i]);
+    }
+
+}
+
+
+run:
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 10
+        at javaapplication90.ArryDemo.main(ArryDemo.java:23)
+Java Result: 1
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+
+
+// Passing Array as a arguments to an method
+
+8.a.
+
+
+
+
+package javaapplication91;
+
+
+public class Main {
+
+    
+    public static void main(String[] args) {
+           int[] numbers = {5, 10, 15, 20, 25, 30, 35, 40};
+
+      for (int index = 0; index < numbers.length; index++)
+         showValue(numbers[index]);
+    }
+
+
+   public static void showValue(int n)
+   {
+      System.out.print(n + " ");
+   }
+}
+
+run:
+5 10 15 20 25 30 35 40 BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+
+8.b
+
+package javaapplication91;
+import java.util.Scanner;
+
+public class Main {
+
+  
+    public static void main(String[] args) {
+        final int ARRAY_SIZE = 4;  // Size of the array
+
+      // Create an array.
+      int[] nums = new int[ARRAY_SIZE];
+    
+        // Create a Scanner objects for keyboard input.
+      Scanner keyboard = new Scanner(System.in);
+
+      System.out.println("Enter a series of " +
+                    nums.length + " numbers.");
+
+      // Read values into the array
+      for (int index = 0; index < nums.length; index++)
+      {
+         System.out.print("Enter number " +
+                          (index + 1) + ": ");
+         nums[index] = keyboard.nextInt();
+      }
+
+          System.out.println("Here are the " +
+                  "numbers that you entered:");
+
+      // Pass the array to the showArray method.
+      showArray(nums);
+    }
+ 
+   public static void showArray(int[] array)
+   {
+      // Display the array elements.
+      for (int index = 0; index < array.length; index++)
+         System.out.print(array[index] + " ");
+   }
+}
+
+
+run:
+Enter a series of 4 numbers.
+Enter number 1: 11
+Enter number 2: 22
+Enter number 3: 33
+Enter number 4: 44
+Here are the numbers that you entered:
+11 22 33 44 BUILD SUCCESSFUL (total time: 10 seconds)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

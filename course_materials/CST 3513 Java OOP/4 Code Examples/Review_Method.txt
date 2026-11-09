@@ -1,0 +1,111 @@
+
+
+// Program No.1
+
+package javaapplication212;
+import java.util.Scanner;
+public class JavaApplication212 {
+    public static void main(String[] args) {
+     int sum,num1,num2;
+      Scanner keyboard= new Scanner(System.in);
+      System.out.print("Enter first value:");
+      num1=keyboard.nextInt();
+       System.out.print("Enter second value:");
+      num2=keyboard.nextInt();
+      sum=num1 + num2;
+      System.out.print("The sum is:" + sum);
+   }  
+}
+
+run:
+Enter first value:67
+Enter second value:23
+The sum is:90BUILD SUCCESSFUL (total time: 8 seconds)
+
+// Assume we want to write a Method Program No.1
+
+    // Option No.1
+package javaapplication212;
+import java.util.Scanner;
+public class JavaApplication212 {
+    public static void main(String[] args) {
+        int total, x ,y ;
+        Scanner keyboard= new Scanner(System.in);
+        System.out.print("Enter first value:");
+           x=keyboard.nextInt();
+       System.out.print("Enter second value:");
+           y=keyboard.nextInt();
+      
+
+      total = sum( );//  no arguments here
+      
+      // Display the contents of all these variables.
+      System.out.println("The sum of " + x +
+                         " and " + y + " is " +
+                         total);
+   }
+     
+   public static int sum(int num1, int num2){   
+      int result;  // result is a local variable
+
+      // Assign the value of num1 + num2 to result.
+      result = num1 + num2;      
+      // Return the value in the result variable.
+      return result;
+   }  
+}
+
+Note: It doesn't work because : 
+
+required: int,int
+ found: no arguments
+ reason: actual and formal argument lists differ in length
+
+// Option No.2
+
+package javaapplication212;
+import java.util.Scanner;
+public class JavaApplication212 {
+    public static void main(String[] args) {
+        int total, x ,y ;
+        Scanner keyboard= new Scanner(System.in);
+        System.out.print("Enter first value:");
+           x=keyboard.nextInt();
+       System.out.print("Enter second value:");
+           y=keyboard.nextInt();      
+
+      total = sum(x, y );// Actual parameters
+      
+      // Display the contents of all these variables.
+      System.out.println("The sum of " + x +
+                         " and " + y + " is " +
+                         total);
+   }
+       
+   public static int sum(int num1, int num2 ) //formal parameters
+   {
+   
+      int result;  // result is a local variable
+
+      // Assign the value of num1 + num2 to result.
+      result = num1 + num2;
+      
+      // Return the value in the result variable.
+      return result;
+   }  
+}
+
+run:
+Enter first value:67
+Enter second value:23
+The sum of 67 and 23 is 90
+BUILD SUCCESSFUL (total time: 13 seconds)
+
+Note: It works:
+ 1. We are passing two actual parameters data types (int,int)
+ 2. The number of formal parameters are also two and data types (int,int)
+ 3. This method retunrs a single value
+ 4. We have return statement => return result;
+
+Note: Please look into Method Options file.
+We have three options. The file is in the Bright space. 

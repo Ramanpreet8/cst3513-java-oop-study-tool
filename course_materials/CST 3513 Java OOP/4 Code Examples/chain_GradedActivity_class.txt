@@ -1,0 +1,311 @@
+
+
+
+// overriding Superclasses Methods
+
+1.
+package javaapplication91;
+
+ public class GradedActivity {
+   private double score;  // Numeric score
+   public void setScore(double s) {
+   
+      score = s;
+   }
+
+ public double getScore(){
+   
+      return score;
+   }
+
+ public char getGrade(){ 
+      char letterGrade;
+
+      if (score >= 90)
+         letterGrade = 'A';
+      else if (score >= 80)
+         letterGrade = 'B';
+      else if (score >= 70)
+         letterGrade = 'C';
+      else if (score >= 60)
+         letterGrade = 'D';
+      else
+         letterGrade = 'F';
+
+      return letterGrade;
+   }
+}
+
+1.2.
+
+
+package javaapplication91;
+
+public class CurvedActivity extends GradedActivity {
+   double rawScore;     // Unadjusted score
+   double percentage;   // Curve percentage
+
+  
+
+   public CurvedActivity(double percent){
+      percentage = percent;
+      rawScore = 0.0;
+   }
+
+ public void setScore(double s){
+      rawScore = s;
+      super.setScore(rawScore * percentage);
+   }
+
+   public double getRawScore(){
+   
+      return rawScore;
+   }
+
+ public double getPercentage(){
+   
+      return percentage;
+   }
+}
+
+1.3.
+
+
+
+package javaapplication91;
+import java.util.Scanner;
+
+public class CurvedActivityDemo {
+   public static void main(String[] args) {
+   
+      double score;         // Raw score
+      double curvePercent;  // Curve percentage
+
+      // Create a Scanner object to read keyboard input.
+      Scanner keyboard = new Scanner(System.in);
+
+      // Get the unadjusted exam score.
+      System.out.print("Enter the student's " +
+                         "raw numeric score: ");
+      score = keyboard.nextDouble();
+
+      // Get the curve percentage.
+      System.out.print("Enter the curve percentage: ");
+      curvePercent = keyboard.nextDouble();
+
+      // Create a CurvedActivity object.
+      CurvedActivity curvedExam =
+                 new CurvedActivity(curvePercent);
+
+      // Set the exam score.
+      curvedExam.setScore(score);
+
+      // Display the raw score.
+      System.out.println("The raw score is " +
+                         curvedExam.getRawScore() +
+                         " points.");
+      
+      // Display the curved score.
+      System.out.println("The curved score is " +
+                         curvedExam.getScore());
+      
+      // Display the exam grade.
+      System.out.println("The exam grade is " +
+                         curvedExam.getGrade());
+   }
+}
+
+
+
+
+
+// Chain of Inheritance
+
+2.1.
+
+
+package javaapplication91;
+public class GradedActivity
+{
+   private double score;  // Numeric score
+
+ 
+
+   public void setScore(double s)
+   {
+      score = s;
+   }
+
+
+
+   public double getScore()
+   {
+      return score;
+   }
+
+
+
+   public char getGrade()
+   {
+      char letterGrade;
+
+      if (score >= 90)
+         letterGrade = 'A';
+      else if (score >= 80)
+         letterGrade = 'B';
+      else if (score >= 70)
+         letterGrade = 'C';
+      else if (score >= 60)
+         letterGrade = 'D';
+      else
+         letterGrade = 'F';
+
+      return letterGrade;
+   }
+}
+
+2.2
+
+
+package javaapplication91;
+
+
+
+public class PassFailActivity extends GradedActivity
+{
+   private double minPassingScore; // Minimum passing score
+
+
+
+   public PassFailActivity(double mps)
+   {
+      minPassingScore = mps;
+   }
+
+
+
+   public char getGrade()
+   {
+      char letterGrade;
+
+      if (super.getScore() >= minPassingScore)
+         letterGrade = 'P';
+      else
+         letterGrade = 'F';
+
+      return letterGrade;
+   }
+}
+
+2.3.
+
+
+package javaapplication91;
+
+
+
+public class PassFailExam extends PassFailActivity
+{
+   private int numQuestions;  // Number of questions
+   private double pointsEach; // Points for each question
+   private int numMissed;     // Number of questions missed
+
+  
+
+   public PassFailExam(int questions, int missed, 
+                       double minPassing)
+   {
+      // Call the superclass constructor.
+      super(minPassing);
+
+      // Declare a local variable for the score.
+      double numericScore;
+
+      // Set the numQuestions and numMissed fields.
+      numQuestions = questions;
+      numMissed = missed;
+
+      // Calculate the points for each question and
+      // the numeric score for this exam.
+      pointsEach = 100.0 / questions;
+      numericScore = 100.0 - (missed * pointsEach);
+
+      // Call the superclass's setScore method to
+      // set the numeric score.
+      setScore(numericScore);
+   }
+
+  
+
+   public double getPointsEach()
+   {
+      return pointsEach;
+   }
+
+ 
+
+   public int getNumMissed()
+   {
+      return numMissed;
+   }
+}
+
+2.4.
+
+package javaapplication91;
+//import javax.swing.JOptionPane;
+
+
+
+import java.util.Scanner;
+
+
+
+public class PassFailExamDemo
+{
+   public static void main(String[] args)
+   {
+      int questions;     // Number of questions
+      int missed;        // Number of questions missed
+      double minPassing; // Minimum passing score
+
+      // Create a Scanner object for keyboard input.
+      Scanner keyboard = new Scanner(System.in);
+
+      // Get the number of questions on the exam.
+      System.out.print("How many questions are " +
+                       "on the exam? ");
+      questions = keyboard.nextInt();
+
+      // Get the number of questions missed.
+      System.out.print("How many questions did " +
+                       "the student miss? ");
+      missed = keyboard.nextInt();
+
+      // Get the minimum passing score.
+      System.out.print("What is the minimum " +
+                       "passing score? ");
+      minPassing = keyboard.nextDouble();
+
+      // Create a PassFailExam object.
+      PassFailExam exam =
+           new PassFailExam(questions, missed, minPassing);
+
+      // Display the points for each question.
+      System.out.println("Each question counts " +
+                 exam.getPointsEach() + " points.");
+
+      // Display the exam score.
+      System.out.println("The exam score is " +
+                 exam.getScore());
+
+      // Display the exam grade.
+      System.out.println("The exam grade is " +
+                 exam.getGrade());
+   }
+}
+
+
+
+
+

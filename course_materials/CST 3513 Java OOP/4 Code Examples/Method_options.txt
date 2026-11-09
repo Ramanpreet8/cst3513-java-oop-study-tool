@@ -1,0 +1,110 @@
+
+
+9.a.  // First Option
+
+public class ValueReturn
+{
+   public static void main(String[] args){
+   
+      int total, x = 20, y = 40;
+
+      total = sum( x,  y);//Method call
+      
+      // Display the contents of all these variables.
+      System.out.println("The sum of " + x +
+                         " and " + y + " is " +
+                         total);
+   }
+   
+    
+   public static int sum(int num1, int num2){
+   
+      int result;  // result is a local variable
+
+      // Assign the value of num1 + num2 to result.
+      result = num1 + num2;
+      
+      // Return the value in the result variable.
+      return result;
+   }  
+}
+
+run:
+The sum of 20 and 40 is 60
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+9.b. // Second Option
+
+package javaapplication240;
+
+public class JavaApplication240 {
+
+   
+    public static void main(String[] args) {
+       //  int total, x = 20, y = 40;// we don't need total
+          int x = 20, y = 40;
+    
+     // total = sum( x,  y);//Method call
+      
+      // Display the contents of all these variables.
+      System.out.println("The sum of " + x +
+                         " and " + y + " is " +
+                         sum(x,y));
+   }
+   
+    
+   public static int sum(int num1, int num2)
+   {
+      int result;  // result is a local variable
+
+      // Assign the value of num1 + num2 to result.
+      result = num1 + num2;
+      
+      // Return the value in the result variable.
+      return result;
+   }  
+ }
+    
+run:
+The sum of 20 and 40 is 60
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+9.c  // third option
+
+
+package javaapplication240;
+public class JavaApplication240 {
+    public static void main(String[] args) {
+       
+          int x = 20, y = 40;
+      
+    
+              sum( x,  y);//Method call
+      
+      // Display the contents of all these variables.
+    //  System.out.println("The sum of " + x +
+                     //    " and " + y + " is " +
+                        // sum(x,y));
+   }
+   
+    
+   public static void sum(int num1, int num2)
+   {
+      int result;  // result is a local variable
+
+      // Assign the value of num1 + num2 to result.
+      result = num1 + num2;
+      
+    // Display the contents of all these variables.
+      System.out.println("The sum of " + num1 +
+                        " and " + num2 + " is " +
+                        result);
+      
+      // Return the value in the result variable.
+    //  return result;
+   }  
+ }
+
+run:
+The sum of 20 and 40 is 60
+BUILD SUCCESSFUL (total time: 0 seconds)

@@ -1,0 +1,228 @@
+
+1.   //  Option 1
+
+package javaapplication323;
+
+import java.text.DecimalFormat;
+
+public class JavaApplication323 {
+
+     public static void main(String[] args) {
+      double number1 = 0.166666666666667;
+      double number2 = 1.666666666666667;
+      double number3 = 16.666666666666667;
+      double number4 = 166.666666666666667;
+
+      // Create a DecimalFormat object.
+      DecimalFormat formatter = new DecimalFormat("#0.00");
+
+      // Display the formatted variable contents.
+      System.out.println(formatter.format(number1));
+      System.out.println(formatter.format(number2));
+      System.out.println(formatter.format(number3));
+      System.out.println(formatter.format(number4));
+    }
+    
+}
+
+run:
+0.17
+1.67
+16.67
+166.67
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+1.
+
+// Option 2
+package javaapplication300;
+import java.text.DecimalFormat;
+public class JavaApplication300 {
+   public static void main(String[] arguments) {
+     double number1 = 0.166666666666667;
+      double number2 = 1.666666666666667;
+      double number3 = 16.666666666666667;
+      double number4 = 166.666666666666667;
+
+      // Create a DecimalFormat object.
+      DecimalFormat formatter = new DecimalFormat("#0.00");
+
+      // Display the formatted variable contents.
+      System.out.println(formatter.format(number1));
+      System.out.printf("%.2f\n" , number1);
+      System.out.println(formatter.format(number2));
+         System.out.printf("%.2f\n" , number2);
+      System.out.println(formatter.format(number3));
+         System.out.printf("%.2f\n" , number3);
+      System.out.println(formatter.format(number4));
+         System.out.printf("%.2f\n" , number4);
+    }
+}
+
+run:
+0.17
+1.67
+16.67
+166.67
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+1.
+
+// Option 3
+package javaapplication300;
+public class JavaApplication300 {
+   public static void main(String[] arguments) {
+     double number1 = 0.166666666666667;
+     double number2 = 1.666666666666667;
+     double number3 = 16.666666666666667;
+     double number4 = 166.666666666666667;
+
+      // Display the formatted variable contents.    
+      System.out.printf("%.2f\n" , number1);
+      System.out.printf("%.2f\n" , number2);
+      System.out.printf("%.2f\n" , number3);
+      System.out.printf("%.2f\n" , number4);
+    }
+}
+
+run:
+0.17
+1.67
+16.67
+166.67
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+2.
+
+package javaapplication323;
+
+import java.text.DecimalFormat;
+
+public class JavaApplication323 {
+
+  
+    public static void main(String[] args) {
+      double number1 = 0.166666666666667;
+      double number2 = 1.666666666666667;
+      double number3 = 16.666666666666667;
+      double number4 = 166.666666666666667;
+
+      // Create a DecimalFormat object.
+      DecimalFormat formatter = new DecimalFormat("000.00");
+
+      // Display the formatted variable contents.
+      System.out.println(formatter.format(number1));
+      System.out.println(formatter.format(number2));
+      System.out.println(formatter.format(number3));
+      System.out.println(formatter.format(number4));
+    }
+    
+}
+
+run:
+000.17
+001.67
+016.67
+166.67
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+2.
+//  option 2
+
+
+package javaapplication300;
+public class JavaApplication300 {
+   public static void main(String[] arguments) {
+     double number1 = 0.166666666666667;
+     double number2 = 1.666666666666667;
+     double number3 = 16.666666666666667;
+     double number4 = 166.666666666666667;
+
+      // Display the formatted variable contents.    
+      System.out.printf("%6.2f\n" , number1);
+      System.out.printf("%6.2f\n" , number2);
+      System.out.printf("%6.2f\n" , number3);
+      System.out.printf("%6.2f\n" , number4);
+    }
+}
+
+
+run:
+  0.17
+  1.67
+ 16.67
+166.67
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+3.
+
+package javaapplication323;
+
+import java.text.DecimalFormat;
+
+public class JavaApplication323 {
+  
+    public static void main(String[] args) {
+      double number1 = 123.899;
+      double number2 = 1233.899;
+      double number3 = 12345.899;
+      double number4 = 123456.899;
+      double number5 = 1234567.899;
+
+      // Create a DecimalFormat object.
+      DecimalFormat formatter = new DecimalFormat("#,##0.00");
+
+      // Display the formatted variable contents.
+      System.out.println(formatter.format(number1));
+      System.out.println(formatter.format(number2));
+      System.out.println(formatter.format(number3));
+      System.out.println(formatter.format(number4));
+      System.out.println(formatter.format(number5));
+    }
+    
+}
+
+
+run:
+123.90
+1,233.90
+12,345.90
+123,456.90
+1,234,567.90
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+4.
+
+package javaapplication323;
+
+import java.text.DecimalFormat;
+
+public class JavaApplication323 {
+
+    public static void main(String[] args) {
+      double number1 = 0.12;
+      double number2 = 0.05;
+             
+      // Create a DecimalFormat object.
+      DecimalFormat formatter = new DecimalFormat("#0%");
+
+      // Display the formatted variable contents.
+      System.out.println(formatter.format(number1));
+      System.out.println(formatter.format(number2));
+    }
+    
+}
+
+
+run:
+12%
+5%
+BUILD SUCCESSFUL (total time: 0 seconds)
+

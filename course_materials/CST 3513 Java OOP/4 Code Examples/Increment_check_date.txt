@@ -1,0 +1,178 @@
+
+1.1
+
+package javaapplication63;
+
+
+public class Date {
+   private int month; // 1-12
+   private int day;   // 1-31 based on month
+   private int year;  // > 0
+
+   // constructor: call checkMonth to confirm proper value for month; 
+   // call checkDay to confirm proper value for day; call checkYear
+   // to confirm proper value for the year
+
+   public Date( int theMonth, int theDay, int theYear )
+   {
+      month = checkMonth( theMonth ); // validate month
+      year = checkYear( theYear ); // validate year
+      day = checkDay( theDay ); // validate day
+
+      System.out.printf( 
+         "Date object constructor for date %s\n", toString() );
+   } // end Date constructor
+
+   // utility method to confirm proper year value
+
+   private int checkYear( int testYear )
+   {
+      if ( testYear > 0 ) // validate year
+         return testYear;
+      else // day is invalid
+      {
+         System.out.printf(
+            "Invalid year (%d) set to 1.\n", testYear );
+         return 1;
+      } // end else
+   } // end method checkYear
+   
+   // utility method to confirm proper month value
+
+   private int checkMonth( int testMonth )
+   {
+      if ( testMonth > 0 && testMonth <= 12 ) // validate month
+         return testMonth;
+      else // month is invalid 
+      { 
+         System.out.printf( 
+            "Invalid month (%d) set to 1.\n", testMonth );
+         return 1; // maintain object in consistent state
+      } // end else
+   } // end method checkMonth
+
+
+
+   // utility method to confirm proper day value based on month and year
+
+   private int checkDay( int testDay )
+   {
+      int[] daysPerMonth = 
+         { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+   
+      // check if day in range for month
+      if ( testDay > 0 && testDay <= daysPerMonth[ month ] )
+         return testDay;
+   
+      // check for leap year
+      if ( month == 2 && testDay == 29 && ( year % 400 == 0 || 
+           ( year % 4 == 0 && year % 100 != 0 ) ) )
+         return testDay;
+   
+      System.out.printf( "Invalid day (%d) set to 1.\n", testDay );
+   
+      return 1; // maintain object in consistent state
+   } // end method checkDay
+   
+   // increment the day and check if doing so will change the month
+
+   public void nextDay()
+   {
+      day = checkDay( day + 1 );
+
+      if ( day == 1 )
+         nextMonth();
+   } // end method nextDay
+
+   // increment the month and check if doing so will change the year
+
+   public  void nextMonth()
+   {
+      month = month % 12 + 1;
+
+      if ( month == 1 )
+         ++ year;
+   } // end method nextMonth
+
+   // return a String of the form month/day/year
+
+   public  String toString()
+   { 
+      return String.format( "%d/%d/%d", month, day, year ); 
+   } // end method toString  
+}
+
+
+
+1.2
+
+
+package javaapplication63;
+
+
+public class JavaApplication63 {
+
+    
+    public static void main(String[] args) {
+       System.out.println( "Checking increment" );
+      Date testDate = new Date( 11, 27, 1988 );
+
+      // test incrementing of day, month and year
+
+      for ( int counter = 0; counter < 40; counter++ )
+      {
+         testDate.nextDay();
+         System.out.printf( "Incremented Date: %s\n", 
+            testDate.toString() );
+      } // end for
+    }
+    
+}
+
+
+run:
+Checking increment
+Date object constructor for date 11/27/1988
+Incremented Date: 11/28/1988
+Incremented Date: 11/29/1988
+Incremented Date: 11/30/1988
+Invalid day (31) set to 1.
+Incremented Date: 12/1/1988
+Incremented Date: 12/2/1988
+Incremented Date: 12/3/1988
+Incremented Date: 12/4/1988
+Incremented Date: 12/5/1988
+Incremented Date: 12/6/1988
+Incremented Date: 12/7/1988
+Incremented Date: 12/8/1988
+Incremented Date: 12/9/1988
+Incremented Date: 12/10/1988
+Incremented Date: 12/11/1988
+Incremented Date: 12/12/1988
+Incremented Date: 12/13/1988
+Incremented Date: 12/14/1988
+Incremented Date: 12/15/1988
+Incremented Date: 12/16/1988
+Incremented Date: 12/17/1988
+Incremented Date: 12/18/1988
+Incremented Date: 12/19/1988
+Incremented Date: 12/20/1988
+Incremented Date: 12/21/1988
+Incremented Date: 12/22/1988
+Incremented Date: 12/23/1988
+Incremented Date: 12/24/1988
+Incremented Date: 12/25/1988
+Incremented Date: 12/26/1988
+Incremented Date: 12/27/1988
+Incremented Date: 12/28/1988
+Incremented Date: 12/29/1988
+Incremented Date: 12/30/1988
+Incremented Date: 12/31/1988
+Invalid day (32) set to 1.
+Incremented Date: 1/1/1989
+Incremented Date: 1/2/1989
+Incremented Date: 1/3/1989
+Incremented Date: 1/4/1989
+Incremented Date: 1/5/1989
+Incremented Date: 1/6/1989
+BUILD SUCCESSFUL (total time: 0 seconds)

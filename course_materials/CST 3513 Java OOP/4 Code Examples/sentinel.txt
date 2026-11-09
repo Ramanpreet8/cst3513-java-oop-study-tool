@@ -1,0 +1,42 @@
+1.
+package javaapplication6;
+import java.util.Scanner;
+
+public class JavaApplication6 {
+
+ 
+    public static void main(String[] args) {
+        final int SENTINEL=-999;
+        int number,sum=0,count=0,average;;
+        // Create a Scanner object for keyboard input.
+      Scanner keyboard = new Scanner(System.in);
+       // Display general instructions.
+   System.out.println("\nEnter numbers ending with "
+              + SENTINEL);
+        // Get the number
+          number = keyboard.nextInt();
+          while ( number !=SENTINEL)
+          {
+              sum = sum + number;
+              count++;
+    System.out.print("Enter a number ");
+        number = keyboard.nextInt();
+
+          }
+    System.out.println("The sum of" + count + "number is"
+              + sum);
+    if(count !=0)
+    {
+        average=sum/count;
+    System.out.println("The average is " + average);
+
+    }
+ else
+   System.out.println("No output " );
+    }
+    }
+
+
+
+
+

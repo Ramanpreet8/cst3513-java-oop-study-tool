@@ -1,0 +1,158 @@
+
+
+// Passing Array as a arguments to an method
+
+1.a.
+
+
+
+
+package javaapplication91;
+
+
+public class Main {
+
+    
+    public static void main(String[] args) {
+           int[] numbers = {5, 10, 15, 20, 25, 30, 35, 40};
+
+      for (int index = 0; index < numbers.length; index++)
+         showValue(numbers[index]);
+    }
+
+
+   public static void showValue(int n)
+   {
+      System.out.print(n + " ");
+   }
+}
+
+run:
+5 10 15 20 25 30 35 40 BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+
+1.b
+
+package javaapplication91;
+import java.util.Scanner;
+
+public class Main {
+
+  
+    public static void main(String[] args) {
+        final int ARRAY_SIZE = 4;  // Size of the array
+
+      // Create an array.
+      int[] nums = new int[ARRAY_SIZE];
+    
+        // Create a Scanner objects for keyboard input.
+      Scanner keyboard = new Scanner(System.in);
+
+      System.out.println("Enter a series of " +
+                    nums.length + " numbers.");
+
+      // Read values into the array
+      for (int index = 0; index < nums.length; index++)
+      {
+         System.out.print("Enter number " +
+                          (index + 1) + ": ");
+         nums[index] = keyboard.nextInt();
+      }
+
+          System.out.println("Here are the " +
+                  "numbers that you entered:");
+
+      // Pass the array to the showArray method.
+      showArray(nums);
+    }
+ 
+   public static void showArray(int[] array)
+   {
+      // Display the array elements.
+      for (int index = 0; index < array.length; index++)
+         System.out.print(array[index] + " ");
+   }
+}
+
+
+run:
+Enter a series of 4 numbers.
+Enter number 1: 11
+Enter number 2: 22
+Enter number 3: 33
+Enter number 4: 44
+Here are the numbers that you entered:
+11 22 33 44 BUILD SUCCESSFUL (total time: 10 seconds)
+
+
+
+1.c
+
+
+
+package javaapplication91;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        final int ARRAY_SIZE = 4;  // Size of the array
+
+      // Create an array.
+      int[] numbers = new int[ARRAY_SIZE];
+
+      // Pass the array to the getValues method.
+      getValues(numbers);
+
+      System.out.println("Here are the " +
+                  "numbers that you entered:");
+
+      // Pass the array to the showArray method.
+      showArray(numbers);
+    }
+
+
+
+  // public  static void getValues(int[] array)  also works
+
+   private static void getValues(int[] array)
+   {
+      // Create a Scanner objects for keyboard input.
+      Scanner keyboard = new Scanner(System.in);
+
+      System.out.println("Enter a series of " +
+                    array.length + " numbers.");
+
+      // Read values into the array
+      for (int index = 0; index < array.length; index++)
+      {
+         System.out.print("Enter number " +
+                          (index + 1) + ": ");
+         array[index] = keyboard.nextInt();
+      }
+    }
+
+
+
+   public static void showArray(int[] array)
+   {
+      // Display the array elements.
+      for (int index = 0; index < array.length; index++)
+         System.out.print(array[index] + " ");
+   }
+}
+
+
+run:
+Enter a series of 4 numbers.
+Enter number 1: 44
+Enter number 2: 66
+Enter number 3: 11
+Enter number 4: 22
+Here are the numbers that you entered:
+44 66 11 22 BUILD SUCCESSFUL (total time: 16 seconds)
+
+
+
+

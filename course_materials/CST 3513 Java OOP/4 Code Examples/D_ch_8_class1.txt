@@ -1,0 +1,81 @@
+
+
+1.
+
+ //   Time1.java
+
+// Time1 class declaration maintains the time in 24-hour format.
+
+public class Time1  
+{
+   private int hour; // 0 - 23
+   private int minute; // 0 - 59
+   private int second; // 0 - 59
+
+   // set a new time value using universal time; ensure that 
+   // the data remains consistent by setting invalid values to zero
+   public void setTime( int h, int m, int s )
+   {
+      hour = ( ( h >= 0 && h < 24 ) ? h : 0 ); // validate hour
+      minute = ( ( m >= 0 && m < 60 ) ? m : 0 ); // validate minute
+      second = ( ( s >= 0 && s < 60 ) ? s : 0 ); // validate second
+   } // end method setTime
+
+   // convert to String in universal-time format (HH:MM:SS)
+   public String toUniversalString()
+   {
+      return String.format( "%02d:%02d:%02d", hour, minute, second );
+   } // end method toUniversalString
+
+   // convert to String in standard-time format (H:MM:SS AM or PM)
+   public String toString()
+   {
+      return String.format( "%d:%02d:%02d %s", 
+         ( ( hour == 0 || hour == 12 ) ? 12 : hour % 12 ),
+         minute, second, ( hour < 12 ? "AM" : "PM" ) );
+   } // end method toString
+} // end class Time1
+
+
+1.1
+
+//  Time1Test.java
+
+// Time1 object used in an application.
+
+public class Time1Test 
+{
+   public static void main( String[] args )
+   {
+      // create and initialize a Time1 object
+      Time1 time = new Time1(); // invokes Time1 constructor
+
+      // output string representations of the time
+      System.out.print( "The initial universal time is: " );
+      System.out.println( time.toUniversalString() );
+      System.out.print( "The initial standard time is: " );
+      System.out.println( time.toString() );
+      System.out.println(); // output a blank line
+
+      // change time and output updated time 
+      time.setTime( 13, 27, 6 ); 
+      System.out.print( "Universal time after setTime is: " );
+      System.out.println( time.toUniversalString() );
+      System.out.print( "Standard time after setTime is: " );
+      System.out.println( time.toString() );
+      System.out.println(); // output a blank line
+
+      // set time with invalid values; output updated time 
+      time.setTime( 99, 99, 99 ); 
+      System.out.println( "After attempting invalid settings:" );
+      System.out.print( "Universal time: " );
+      System.out.println( time.toUniversalString() );
+      System.out.print( "Standard time: " );
+      System.out.println( time.toString() );
+   } // end main
+} // end class Time1Test
+
+
+
+
+

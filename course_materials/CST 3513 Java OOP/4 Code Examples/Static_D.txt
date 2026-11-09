@@ -1,0 +1,152 @@
+
+
+
+// Static variables
+
+1.
+//  Employee.java
+// Static variable used to maintain a count of the number of 
+// Employee objects in memory.
+
+public class Employee 
+{
+   private String firstName;
+   private String lastName;
+   private static int count = 0; // number of Employees created
+
+   // initialize Employee, add 1 to static count and 
+   // output String indicating that constructor was called
+
+   public Employee( String first, String last )
+   {
+      firstName = first;
+      lastName = last;
+
+          ++count;  // increment static count of employees
+          System.out.printf( "Employee constructor: %s %s; count = %d\n",
+         firstName, lastName, count );
+   } // end Employee constructor
+
+   // get first name
+   public String getFirstName() 
+   { 
+      return firstName; 
+   } // end method getFirstName
+
+   // get last name
+   public String getLastName() 
+   { 
+      return lastName; 
+   } // end method getLastName
+
+   // static method to get static count value
+
+   public static int getCount() 
+   { 
+        return count; 
+   } // end method getCount
+} // end class Employee
+
+1.1
+
+//  EmployeeTest.java
+// Static member demonstration.
+
+public class EmployeeTest 
+{
+   public static void main( String[] args )
+   {
+      // show that count is 0 before creating Employees
+      System.out.printf( "Employees before instantiation: %d\n",
+         Employee.getCount() );
+
+      // create two Employees; count should be 2
+
+      Employee e1 = new Employee( "Susan", "Baker" );
+      Employee e2 = new Employee( "Bob", "Blue" );
+   
+      // show that count is 2 after creating two Employees
+
+      System.out.println( "\nEmployees after instantiation: " );
+      System.out.printf( "via e1.getCount(): %d\n", e1.getCount() );
+      System.out.printf( "via e2.getCount(): %d\n", e2.getCount() );
+      System.out.printf( "via Employee.getCount(): %d\n", 
+         Employee.getCount() );
+   
+      // get names of Employees
+
+      System.out.printf( "\nEmployee 1: %s %s\nEmployee 2: %s %s\n",
+         e1.getFirstName(), e1.getLastName(), 
+         e2.getFirstName(), e2.getLastName() );
+
+      // in this example, there is only one reference to each Employee,
+      // so the following two statements indicate that these objects 
+      // are eligible for garbage collection
+
+      e1 = null; 
+      e2 = null;  
+   } // end main
+} // end class EmployeeTest
+
+run:
+Employees before instantiation: 0
+Employee constructor: Susan Baker; count = 1
+Employee constructor: Bob Blue; count = 2
+
+Employees after instantiation: 
+via e1.getCount(): 2
+via e2.getCount(): 2
+via Employee.getCount(): 2
+
+Employee 1: Susan Baker
+Employee 2: Bob Blue
+BUILD SUCCESSFUL (total time: 0 seconds)
+2.1
+
+//  Increment.java
+// final instance variable in a class.
+
+public class Increment 
+{
+   private int total = 0; // total of all increments
+   private final int INCREMENT; // constant variable (uninitialized)
+
+   // constructor initializes final instance variable INCREMENT
+   public Increment( int incrementValue )
+   {
+      INCREMENT = incrementValue; // initialize constant variable (once)
+   } // end Increment constructor
+
+   // add INCREMENT to total
+   public void addIncrementToTotal()
+   {
+      total += INCREMENT;
+   } // end method addIncrementToTotal 
+
+   // return String representation of an Increment object's data
+   public String toString()
+   {
+      return String.format( "total = %d", total );
+   } // end method toString
+} // end class Increment
+
+2.2
+
+//  IncrementTest.java
+// final variable initialized with a constructor argument.
+
+public class IncrementTest 
+{
+   public static void main( String[] args )
+   {
+      Increment value = new Increment( 5 );
+
+      System.out.printf( "Before incrementing: %s\n\n", value );
+
+      for ( int i = 1; i <= 3; i++ ) 
+      {
+         value.addIncrementToTotal();
+         System.out.printf( "After increment %d: %s\n", i, value );
+      } // end for
+   } // end main
+} // end class IncrementTest

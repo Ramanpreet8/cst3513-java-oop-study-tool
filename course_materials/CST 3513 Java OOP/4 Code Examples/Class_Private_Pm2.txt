@@ -1,0 +1,151 @@
+3.1
+
+
+package javaapplication83;
+
+
+public class Date {
+
+  public int month;
+  public int day;
+  public int year;
+
+// implementation section
+
+// Definition of constructor
+ public Date(int mm , int dd , int yy )
+ {
+   month = mm;
+   day = dd;
+   year = yy;
+ }
+
+// member function to assign a date
+
+ public void setDate(int mm, int dd, int yy)
+  {
+    month = mm;
+    day = dd;
+    year = yy;
+  }
+
+// member function to display a date
+
+ public void showDate( )
+ {
+  System.out.println( "The date is "+ month + "/" + day + "/" + year + "\n");
+ }
+
+
+}
+
+3.2
+
+
+package javaapplication83;
+
+
+public class ConstructorDemo {
+
+    
+    public static void main(String[] args) {
+// Create a Date object, passing three
+      //   arguments to the constructor.
+
+         Date a = new Date(7,4,94);
+         Date b = new Date(4,1,96);
+         Date c = new Date(12,25,95);
+           b.showDate(); 
+           b.month=7;
+           b.day=12;
+           b.year=77;
+         
+         a.showDate();         // display object a's values
+         b.showDate();         // display object b's values
+         c.showDate();         // display object c's values
+  
+  
+     }
+  }
+
+run:
+The date is 4/1/96
+
+The date is 7/4/94
+
+The date is 7/12/77
+
+The date is 12/25/95
+
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+
+
+4.1
+
+
+package javaapplication83;
+
+public class Date {
+
+      private int month;
+      private int day;
+      private int year;
+
+// implementation section
+
+// Definition of constructor
+
+// constructor to initialize objects
+
+ public Date(int mm , int dd , int yy )
+ {
+   month = mm;
+   day = dd;
+   year = yy;
+ }
+
+
+// member function to display a date
+
+ public void showDate( )
+ {
+  System.out.println( "The date is "+ month + "/" + day + "/" + year + "\n");
+ }
+
+
+}
+
+4.2
+
+
+
+package javaapplication83;
+
+
+public class ConstructorDemo {
+    public static void main(String[] args) {
+// Create a Date object, passing three
+      //  arguments to the constructor.
+
+         Date a = new Date(7,4,94);
+         Date b = new Date(4,1,96);
+         Date c = new Date(12,25,95);
+         a.showDate();         // display object a's values
+         b.showDate();         // display object b's values
+         c.showDate();         // display object c's values
+      //   b.month; // ERROR because private member
+      
+       }
+  }
+
+run:
+The date is 7/4/94
+
+The date is 4/1/96
+
+The date is 12/25/95
+
+BUILD SUCCESSFUL (total time: 0 seconds)
+

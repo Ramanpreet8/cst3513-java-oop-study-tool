@@ -1,0 +1,115 @@
+
+
+1.1
+
+package javaapplication43;
+
+public class Rectangle {
+      private double length;
+      private double width;
+ 
+   public Rectangle(double len, double w)
+   {
+      length = len;
+      width = w;
+   }
+ 
+   public void setLength(double len)
+   {
+      length = len;
+   }
+
+   public void setWidth(double w)
+   {
+        width = w;
+   }
+
+   public double getLength()
+   {
+      return length;
+   }
+
+    
+   public double getWidth()
+   {
+      return width;
+   }
+
+  
+
+   public double getArea()
+   {
+      return  getLength() * getWidth() ;// return length * width;
+   }
+}
+
+1.2
+
+package javaapplication43;
+
+ public class Cube extends Rectangle {
+
+   private double height;  // The cube's height
+
+    public Cube(double len, double w, double h)
+   {
+      // Call the superclass constructor.
+      super(len, w);
+      
+      // Set the height.
+      height = h;
+   }
+
+
+   public double getHeight()
+   {
+      return height;
+   }
+
+   
+   public double getVolume()
+   {
+      return super.getArea() * height;
+   }
+}
+
+1.3
+
+
+package javaapplication43;
+
+public class JavaApplication43 {
+
+    public static void main(String[] args) {
+      
+      // Create a cube object and pass the
+      // dimensions to the constructor.
+
+Rectangle rect_1 = new Rectangle(9.5,4.5); //create two rectangle objects
+
+Rectangle rect_2 = new Rectangle(3.5,2.5);
+
+      Cube myCube =    new Cube(3.0, 4.0, 5.0); // create one cube object
+             
+
+      // Display the rectangles' area.
+     
+      System.out.println("rect_1 Area: " +
+                         rect_1.getArea());
+     System.out.println("rect_2 Area: " +
+                         rect_2.getArea());
+
+   // Display the cube's volume.
+
+
+      System.out.println("Volume: " +
+                         myCube.getVolume());
+    }
+    
+}
+
+run:
+rect_1 Area: 42.75
+rect_2 Area: 8.75
+Volume: 60.0
+BUILD SUCCESSFUL (total time: 0 seconds)

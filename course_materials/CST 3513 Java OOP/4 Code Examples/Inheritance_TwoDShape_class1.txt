@@ -1,0 +1,659 @@
+// program 1
+
+
+ 
+// A class for two-dimensional objects. 
+
+class TwoDShape { 
+  public double width; 
+  public double height; 
+ 
+  void showDim() { 
+    System.out.println("Width and height are " + 
+                       width + " and " + height); 
+  } 
+} 
+ 
+// A subclass of TwoDShape for triangles. 
+
+class Triangle extends TwoDShape { 
+  String style; 
+   
+    double area() { 
+    return width * height / 2; 
+  } 
+ 
+  void showStyle() { 
+    System.out.println("Triangle is " + style); 
+  } 
+}
+ 
+ 
+class Shapes { 
+  public static void main(String args[]) { 
+    Triangle t1 = new Triangle(); 
+    Triangle t2 = new Triangle(); 
+ 
+    t1.width = 4.0; 
+    t1.height = 4.0; 
+    t1.style = "filled"; 
+ 
+    t2.width = 8.0; 
+    t2.height = 12.0; 
+    t2.style = "outlined"; 
+ 
+    System.out.println("Info for t1: "); 
+    t1.showStyle(); 
+    t1.showDim(); 
+    System.out.println("Area is " + t1.area()); 
+ 
+    System.out.println(); 
+ 
+    System.out.println("Info for t2: "); 
+    t2.showStyle(); 
+    t2.showDim(); 
+    System.out.println("Area is " + t2.area()); 
+  } 
+}
+
+
+
+
+
+
+// program 2
+
+
+package javaapplication77;
+ 
+public class TwoDShape {
+  double width; 
+  double height; 
+ 
+  void showDim() { 
+    System.out.println("Width and height are " + 
+                       width + " and " + height); 
+  } 
+} 
+ 
+// A subclass of TwoDShape for rectangles. 
+
+class Rectangle extends TwoDShape { 
+
+  boolean isSquare() { 
+    if(width == height) return true; 
+    return false; 
+  } 
+   
+  double area() { 
+    return width * height; 
+  } 
+}
+
+class Shapes { 
+  public static void main(String args[]) { 
+     Rectangle t1 = new Rectangle(); 
+     Rectangle t2 = new  Rectangle(); 
+ 
+    t1.width = 4.0; 
+    t1.height = 4.0; 
+    
+    t2.width = 8.0; 
+    t2.height = 12.0; 
+    
+    System.out.println("Info for t1: "); 
+   
+    t1.showDim(); 
+    System.out.println("Area is " + t1.area()); 
+ 
+    System.out.println(); 
+ 
+    System.out.println("Info for t2: "); 
+     t2.showDim(); 
+    System.out.println("Area is " + t2.area()); 
+  } 
+}
+
+
+package javaapplication77;
+public class Shapes {
+
+  public static void main(String args[]) {
+  Rectangle t1 = new Rectangle(); 
+  Rectangle t2 = new  Rectangle(); 
+ 
+    t1.width = 4.0; 
+    t1.height = 4.0; 
+  
+ 
+    t2.width = 8.0; 
+    t2.height = 12.0; 
+   
+ 
+    System.out.println("Info for t1: "); 
+   
+    t1.showDim(); 
+    System.out.println("Area is " + t1.area()); 
+ 
+    System.out.println(); 
+ 
+    System.out.println("Info for t2: "); 
+    
+    t2.showDim(); 
+    System.out.println("Area is " + t2.area()); 
+  }
+}
+
+
+
+
+// program 3
+
+// Private members are not inherited.  
+ 
+// This example will not compile. 
+ 
+// A class for two-dimensional objects. 
+
+class TwoDShape { 
+
+  private double width;  // these are 
+  private double height; // now private  
+ 
+  void showDim() { 
+    System.out.println("Width and height are " + 
+                       width + " and " + height); 
+  } 
+} 
+ 
+// A subclass of TwoDShape for triangles. 
+class Triangle extends TwoDShape { 
+  String style; 
+   
+  double area() { 
+    return width * height / 2; // Error! can't access 
+  } 
+ 
+  void showStyle() { 
+    System.out.println("Triangle is " + style); 
+  } 
+}
+
+
+class Shapes { 
+  public static void main(String args[]) { 
+    Triangle t1 = new Triangle(); 
+    Triangle t2 = new Triangle(); 
+ 
+    t1.width = 4.0; 
+    t1.height = 4.0; 
+    t1.style = "filled"; 
+ 
+    t2.width = 8.0; 
+    t2.height = 12.0; 
+    t2.style = "outlined"; 
+ 
+    System.out.println("Info for t1: "); 
+    t1.showStyle(); 
+    t1.showDim(); 
+    System.out.println("Area is " + t1.area()); 
+ 
+    System.out.println(); 
+ 
+    System.out.println("Info for t2: "); 
+    t2.showStyle(); 
+    t2.showDim(); 
+    System.out.println("Area is " + t2.area()); 
+  } 
+}
+
+
+
+
+//program 4
+
+// Use accessor methods to set and get private members. 
+ 
+// A class for two-dimensional objects. 
+
+class TwoDShape { 
+  private double width;  // these are 
+  private double height; // now private  
+ 
+  // Accessor methods for width and height. 
+
+  double getWidth() { return width; } 
+  double getHeight() { return height; } 
+  void setWidth(double w) { width = w; } 
+  void setHeight(double h) { height = h; } 
+ 
+  void showDim() { 
+    System.out.println("Width and height are " + 
+                       width + " and " + height); 
+  } 
+} 
+ 
+// A subclass of TwoDShape for triangles. 
+class Triangle extends TwoDShape { 
+  String style; 
+   
+  double area() { 
+    return getWidth() * getHeight() / 2;  
+  } 
+ 
+  void showStyle() { 
+    System.out.println("Triangle is " + style); 
+  } 
+} 
+ 
+class Shapes2 { 
+  public static void main(String args[]) { 
+    Triangle t1 = new Triangle(); 
+    Triangle t2 = new Triangle(); 
+ 
+    t1.setWidth(4.0); 
+    t1.setHeight(4.0); 
+    t1.style = "filled"; 
+ 
+    t2.setWidth(8.0); 
+    t2.setHeight(12.0); 
+    t2.style = "outlined"; 
+ 
+    System.out.println("Info for t1: "); 
+    t1.showStyle(); 
+    t1.showDim(); 
+    System.out.println("Area is " + t1.area()); 
+ 
+    System.out.println(); 
+ 
+    System.out.println("Info for t2: "); 
+    t2.showStyle(); 
+    t2.showDim(); 
+    System.out.println("Area is " + t2.area()); 
+  } 
+}
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+// Protected Members  option 1
+
+4.a.1
+
+package javaapplication46;
+public class TwoDShape {
+  protected double width;  // these are 
+  protected double height; // now private  
+  void showDim() { 
+    System.out.println("Width and height are " + 
+                       width + " and " + height);  
+}
+  
+}
+
+4.a.2
+package javaapplication46;
+
+// A subclass of TwoDShape for triangles. 
+class Triangle extends TwoDShape { 
+  String style; 
+   
+  double area() { 
+    return (width * height) / 2;  
+  } 
+ 
+  void showStyle() { 
+    System.out.println("Triangle is " + style); 
+  } 
+} 
+
+4.a.3
+package javaapplication46;
+public class JavaApplication46 {
+  public static void main(String[] args) {
+    Triangle t1 = new Triangle();     
+    t1.width=4.0;   
+    t1.height=4.0;
+    t1.style = "filled";  
+    System.out.println("Info for t1: "); 
+    t1.showStyle(); 
+    t1.showDim(); 
+    System.out.println("Area is " + t1.area());  
+    System.out.println(); 
+
+    }
+ }
+
+run:
+Info for t1: 
+Triangle is filled
+Width and height are 4.0 and 4.0
+Area is 8.0
+BUILD SUCCESSFUL (total time: 0 seconds)
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+Protected members option 2
+
+4.b.1
+package javaapplication46;
+public class TwoDShape {
+  protected double width;  // these are 
+  protected double height; // now private  
+ 
+  // Accessor methods for width and height. 
+
+  double getWidth() { return width; } 
+  double getHeight() { return height; } 
+  void setWidth(double w) { width = w; } 
+  void setHeight(double h) { height = h; } 
+ 
+  void showDim() { 
+    System.out.println("Width and height are " + 
+                       width + " and " + height);  
+}
+  
+}
+
+
+4.b.2
+
+package javaapplication46;
+
+// A subclass of TwoDShape for triangles. 
+class Triangle extends TwoDShape { 
+  String style; 
+   
+  double area() { 
+    return (width * height) / 2;  
+  } 
+ 
+  void showStyle() { 
+    System.out.println("Triangle is " + style); 
+  } 
+} 
+
+
+
+4.b.3
+public class JavaApplication46 {
+    public static void main(String[] args) {
+       Triangle t1 = new Triangle(); 
+    Triangle t2 = new Triangle(); 
+ 
+    t1.setWidth(4.0); 
+    t1.width=4.0;
+    t1.setHeight(4.0); 
+    t1.height=4.0;
+    t1.style = "filled"; 
+ 
+   t2.setWidth(8.0); 
+    t2.setHeight(12.0); 
+    t2.style = "outlined"; 
+ 
+    System.out.println("Info for t1: "); 
+    t1.showStyle(); 
+    t1.showDim(); 
+    System.out.println("Area is " + t1.area()); 
+ 
+    System.out.println(); 
+ 
+    System.out.println("Info for t2: "); 
+    t2.showStyle(); 
+    t2.showDim(); 
+    System.out.println("Area is " + t2.area()); 
+    }
+ }
+
+
+run:
+Info for t1: 
+Triangle is filled
+Width and height are 4.0 and 4.0
+Area is 8.0
+
+Info for t2: 
+Triangle is outlined
+Width and height are 8.0 and 12.0
+Area is 48.0
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+// program 5
+
+//Constructors and Inheritance
+
+
+// Add a constructor to Triangle. 
+ 
+// A class for two-dimensional objects. 
+
+class TwoDShape { 
+  private double width;  // these are 
+  private double height; // now private  
+ 
+  // Accessor methods for width and height. 
+
+  double getWidth() { return width; } 
+  double getHeight() { return height; } 
+  void setWidth(double w) { width = w; } 
+  void setHeight(double h) { height = h; } 
+ 
+  void showDim() { 
+    System.out.println("Width and height are " + 
+                       width + " and " + height); 
+  } 
+} 
+ 
+// A subclass of TwoDShape for triangles. 
+
+class Triangle extends TwoDShape { 
+  private String style; 
+   
+  // Constructor 
+  Triangle(String s, double w, double h) { 
+    setWidth(w); 
+    setHeight(h); 
+ 
+    style = s;  
+  } 
+ 
+  double area() { 
+    return getWidth() * getHeight() / 2;  
+  } 
+ 
+  void showStyle() { 
+    System.out.println("Triangle is " + style); 
+  } 
+} 
+ 
+class Shapes3 { 
+  public static void main(String args[]) { 
+    Triangle t1 = new Triangle("filled", 4.0, 4.0); 
+    Triangle t2 = new Triangle("outlined", 8.0, 12.0); 
+ 
+    System.out.println("Info for t1: "); 
+    t1.showStyle(); 
+    t1.showDim(); 
+    System.out.println("Area is " + t1.area()); 
+ 
+    System.out.println(); 
+ 
+    System.out.println("Info for t2: "); 
+    t2.showStyle(); 
+    t2.showDim(); 
+    System.out.println("Area is " + t2.area()); 
+  } 
+}
+
+
+
+
+
+
+
+// program 6
+
+// Using super to Call Superclass Constructors
+// Add constructors to TwoDShape. 
+
+class TwoDShape { 
+  private double width; 
+  private double height; 
+ 
+  // Parameterized constructor. 
+  TwoDShape(double w, double h) { 
+    width = w; 
+    height = h; 
+  } 
+ 
+  // Accessor methods for width and height. 
+  double getWidth() { return width; } 
+  double getHeight() { return height; } 
+  void setWidth(double w) { width = w; } 
+  void setHeight(double h) { height = h; } 
+ 
+  void showDim() { 
+    System.out.println("Width and height are " + 
+                       width + " and " + height); 
+  } 
+} 
+ 
+// A subclass of TwoDShape for triangles.
+ 
+class Triangle extends TwoDShape { 
+  private String style; 
+   
+  Triangle(String s, double w, double h) { 
+    super(w, h); // call superclass constructor 
+ 
+    style = s;  
+  } 
+ 
+  double area() { 
+    return getWidth() * getHeight() / 2; 
+  } 
+ 
+  void showStyle() { 
+    System.out.println("Triangle is " + style); 
+  } 
+} 
+ 
+class Shapes4 { 
+  public static void main(String args[]) { 
+    Triangle t1 = new Triangle("filled", 4.0, 4.0); 
+    Triangle t2 = new Triangle("outlined", 8.0, 12.0); 
+ 
+    System.out.println("Info for t1: "); 
+    t1.showStyle(); 
+    t1.showDim(); 
+    System.out.println("Area is " + t1.area()); 
+ 
+    System.out.println(); 
+ 
+    System.out.println("Info for t2: "); 
+    t2.showStyle(); 
+    t2.showDim(); 
+    System.out.println("Area is " + t2.area()); 
+  } 
+}
+
+
+// program 7
+
+// Add more constructors to TwoDShape. 
+
+class TwoDShape { 
+  private double width; 
+  private double height; 
+ 
+  // A default constructor. 
+  TwoDShape() { 
+    width = height = 0.0; 
+  } 
+ 
+  // Parameterized constructor. 
+  TwoDShape(double w, double h) { 
+    width = w; 
+    height = h; 
+  } 
+ 
+  // Construct object with equal width and height. 
+  TwoDShape(double x) { 
+    width = height = x; 
+  } 
+ 
+  // Accessor methods for width and height. 
+  double getWidth() { return width; } 
+  double getHeight() { return height; } 
+  void setWidth(double w) { width = w; } 
+  void setHeight(double h) { height = h; } 
+ 
+  void showDim() { 
+    System.out.println("Width and height are " + 
+                       width + " and " + height); 
+  } 
+} 
+ 
+// A subclass of TwoDShape for triangles. 
+class Triangle extends TwoDShape { 
+  private String style; 
+   
+  // A default constructor. 
+  Triangle() { 
+    super(); 
+    style = "none"; 
+  } 
+ 
+  // Constructor 
+  Triangle(String s, double w, double h) { 
+    super(w, h); // call superclass constructor 
+ 
+    style = s;  
+  } 
+ 
+  // One argument constructor. 
+  Triangle(double x) { 
+    super(x); // call superclass constructor 
+ 
+    style = "filled";  
+  } 
+ 
+  double area() { 
+    return getWidth() * getHeight() / 2; 
+  } 
+ 
+  void showStyle() { 
+    System.out.println("Triangle is " + style); 
+  } 
+} 
+ 
+class Shapes5 { 
+  public static void main(String args[]) { 
+    Triangle t1 = new Triangle(); 
+    Triangle t2 = new Triangle("outlined", 8.0, 12.0); 
+    Triangle t3 = new Triangle(4.0); 
+ 
+    t1 = t2; 
+ 
+    System.out.println("Info for t1: "); 
+    t1.showStyle(); 
+    t1.showDim(); 
+    System.out.println("Area is " + t1.area()); 
+ 
+    System.out.println(); 
+ 
+    System.out.println("Info for t2: "); 
+    t2.showStyle(); 
+    t2.showDim(); 
+    System.out.println("Area is " + t2.area()); 
+ 
+    System.out.println(); 
+ 
+    System.out.println("Info for t3: "); 
+    t3.showStyle(); 
+    t3.showDim(); 
+    System.out.println("Area is " + t3.area()); 
+ 
+    System.out.println(); 
+  } 
+}
+
+
+
+

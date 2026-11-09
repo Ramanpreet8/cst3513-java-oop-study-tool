@@ -1,0 +1,126 @@
+
+
+1.1
+
+
+
+public class Rectangle
+{
+   private double length;
+   private double width;
+
+   public void setLength(double len)
+   {
+      length = len;
+   }
+
+   public void setWidth(double w)
+   {
+      width = w;
+   }
+
+   public double getLength()
+   {
+      return length;
+   }
+
+    public double getWidth()
+   {
+      return width;
+   }
+
+   public double getArea()
+   {
+      return length * width;
+   }
+}
+
+1.2
+
+
+public class RectangleDemo {
+ 
+    public static void main(String[] args) {
+            // Create a Rectangle object.
+      Rectangle rectangle = new Rectangle();
+
+      // Set length to 10.0 and width to 20.0.
+      rectangle.setLength(10.0);
+      rectangle.setWidth(20.0);
+
+      // Display the length.
+      System.out.println("The Rectangle's length is " +
+                         rectangle.getLength());
+
+      // Display the width.
+      System.out.println("The Rectangle's width is " +
+                         rectangle.getWidth());
+
+      // Display the area.
+      System.out.println("The Rectangle's area is " +
+                         rectangle.getArea());
+    }
+}
+
+run:
+The Rectangle's length is 10.0
+The Rectangle's width is 20.0
+The Rectangle's area is 200.0
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+     2.1
+package javaapplication17;
+public class Rectangle{
+
+   private double length;
+   private double width;
+
+   public Rectangle(double len, double w){
+         length = len;
+         width = w;
+   }
+
+
+
+   public double getLength(){
+   
+      return length;
+   }
+
+    
+   public double getWidth(){
+   
+      return width;
+   }
+
+   public double getArea(){
+   
+      return length * width;
+   }
+}
+
+2.2
+
+package javaapplication17;
+public class JavaApplication17 {
+   
+    public static void main(String[] args) {
+       // Create a Rectangle object, passing 5.0 and
+      // 15.0 as arguments to the constructor.
+      Rectangle rectangle = new Rectangle(5.0, 15.0);
+
+      // Display the length.
+      System.out.println("The Rectangle's length is " +
+                         rectangle.getLength());
+
+      // Display the width.
+      System.out.println("The Rectangle's width is " +
+                         rectangle.getWidth());
+
+      // Display the area.
+      System.out.println("The Rectangle's area is " +
+                         rectangle.getArea());
+    }
+    
+}

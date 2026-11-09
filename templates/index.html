@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CST 3513 Java OOP - Final Exam Study Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --success: #10b981;
+      --success-soft: rgba(16, 185, 129, 0.15);
+      --danger: #ef4444;
+      --danger-soft: rgba(239, 68, 68, 0.15);
+      --warning: #f59e0b;
+      --warning-soft: rgba(245, 158, 11, 0.15);
+      --code-bg: #0b1120;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 1.1rem;
+    }
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .badge-success { background-color: var(--success-soft); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-danger { background-color: var(--danger-soft); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-info { background-color: var(--accent-soft); color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-warning { background-color: var(--warning-soft); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); }
+
+    /* Nav tabs */
+    nav.tab-bar {
+      background-color: #162032;
+      border-bottom: 1px solid var(--card-border);
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 0.25rem;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.85rem 1.1rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .tab-btn:hover { color: var(--text-main); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Main container */
+    main {
+      flex: 1;
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Cards */
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Grid layouts */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat-card {
+      background-color: #182335;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .stat-val {
+      font-size: 1.85rem;
+      font-weight: 700;
+      margin-top: 0.3rem;
+      color: var(--text-main);
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Forms & Controls */
+    .filter-bar {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+      align-items: center;
+    }
+    select, input[type="text"], textarea {
+      background-color: #0b1120;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      color: var(--text-main);
+      padding: 0.6rem 0.9rem;
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    select:focus, input[type="text"]:focus, textarea:focus {
+      border-color: var(--accent);
+    }
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      resize: vertical;
+    }
+    .btn {
+      background-color: var(--accent);
+      color: #0f172a;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.15rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.15s ease;
+    }
+    .btn:hover { background-color: var(--accent-hover); }
+    .btn-secondary {
+      background-color: #334155;
+      color: var(--text-main);
+    }
+    .btn-secondary:hover { background-color: #475569; }
+    .btn-success { background-color: var(--success); color: #fff; }
+    .btn-success:hover { background-color: #059669; }
+    .btn-danger { background-color: var(--danger); color: #fff; }
+    .btn-danger:hover { background-color: #dc2626; }
+
+    /* Code blocks */
+    .code-view {
+      background-color: var(--code-bg);
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      color: #e2e8f0;
+      margin-bottom: 1rem;
+    }
+    .diff-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 768px) {
+      .diff-container { grid-template-columns: 1fr; }
+    }
+    .diff-box {
+      background-color: #0b1120;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .diff-box-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    /* Flashcard presentation */
+    .flashcard-wrapper {
+      perspective: 1000px;
+      max-width: 680px;
+      margin: 2rem auto;
+    }
+    .flashcard {
+      background: linear-gradient(145deg, #1e293b, #162032);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .flashcard:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .flashcard-badge {
+      font-size: 0.75rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .flashcard-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .flashcard-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1.25rem;
+    }
+
+    /* Modal for Wrong Answer Cheat Sheet Prompt */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      max-width: 550px;
+      width: 100%;
+      padding: 1.75rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--warning);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Progress bar */
+    .prog-bar-bg {
+      background-color: #0b1120;
+      border-radius: 9999px;
+      height: 8px;
+      overflow: hidden;
+      margin-top: 0.35rem;
+    }
+    .prog-bar-fill {
+      background: linear-gradient(90deg, #38bdf8, #10b981);
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.3s ease;
+    }
+
+    /* Table styles */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+    }
+    table.data-table th, table.data-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+    }
+    table.data-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Result banners */
+    .result-banner {
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      display: none;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .result-banner.success {
+      display: block;
+      background-color: var(--success-soft);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+    }
+    .result-banner.error {
+      display: block;
+      background-color: var(--danger-soft);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
+    .result-banner.info {
+      display: block;
+      background-color: var(--accent-soft);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-logo">☕</div>
+      <div>
+        <div class="brand-title">CST 3513 Java OOP Study Tool</div>
+        <div class="brand-sub">Local Final Exam Preparation & Code Diagnostic Suite</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span id="jdk-badge" class="badge badge-info">Checking JDK...</span>
+      <span id="streak-badge" class="badge badge-warning">Streak: 0 🔥</span>
+      <span id="due-badge" class="badge badge-info">Due Today: 0 📅</span>
+      <button class="btn btn-secondary" onclick="openFolderModal()" style="padding: 0.4rem 0.8rem; font-size: 0.78rem;">📁 Change Path</button>
+    </div>
+  </header>
+
+  <!-- Nav Tabs -->
+  <nav class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('dashboard')">📊 Dashboard</button>
+    <button class="tab-btn" onclick="switchTab('predict')">1️⃣ Predict Output</button>
+    <button class="tab-btn" onclick="switchTab('compile')">2️⃣ Does It Compile?</button>
+    <button class="tab-btn" onclick="switchTab('memory')">3️⃣ Write From Memory</button>
+    <button class="tab-btn" onclick="switchTab('exam')">4️⃣ Exam Questions</button>
+    <button class="tab-btn" onclick="switchTab('flashcards')">5️⃣ Flashcards & Rules</button>
+    <button class="tab-btn" onclick="switchTab('weakspot')">⚡ Weak-Spot Practice</button>
+  </nav>
+
+  <!-- Main View Area -->
+  <main>
+
+    <!-- TAB: DASHBOARD -->
+    <div id="tab-dashboard" class="tab-content active">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Attempts</div>
+          <div id="stat-total" class="stat-val">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Overall Accuracy</div>
+          <div id="stat-accuracy" class="stat-val">0%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Current Streak</div>
+          <div id="stat-streak" class="stat-val">0 🔥</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Due for Review Today</div>
+          <div id="stat-due" class="stat-val">0</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🎯 Accuracy by Topic</div>
+          <button class="btn btn-secondary" onclick="loadDashboard()">🔄 Refresh</button>
+        </div>
+        <div id="topic-breakdown-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Topic</th>
+                <th>Attempts</th>
+                <th>Accuracy</th>
+                <th>Visual Progress</th>
+              </tr>
+            </thead>
+            <tbody id="topic-table-body">
+              <tr><td colspan="4" style="text-align: center; color: var(--text-muted);">Loading topics...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📚 Course Folder Index Summary</div>
+        </div>
+        <div id="index-summary-view" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
+          Scanning folder...
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 1: PREDICT OUTPUT -->
+    <div id="tab-predict" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">1️⃣ Predict the Output</div>
+          <div class="filter-bar" style="margin-bottom:0;">
+            <select id="predict-topic-select" onchange="loadPredictSnippet()">
+              <option value="">All Topics</option>
+            </select>
+            <button class="btn btn-secondary" onclick="loadPredictSnippet()">🎲 Next Snippet</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+          <span id="predict-title" style="font-weight: 600; color: var(--accent);">Loading snippet...</span>
+          <span id="predict-topic-badge" class="badge badge-info">-</span>
+        </div>
+
+        <div class="code-view" id="predict-code-block">// Loading Java code...</div>
+
+        <div style="margin-top: 1rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted);">
+            Type your predicted output (lines printed to console):
+          </label>
+          <textarea id="predict-user-input" placeholder="e.g.&#10;5 10 15 20 25&#10;The 6 inch pink candle costs $12.0"></textarea>
+          
+          <div style="margin-top: 0.75rem; display: flex; gap: 0.75rem;">
+            <button id="predict-submit-btn" class="btn" onclick="submitPrediction()">🚀 Compile, Run & Diff Output</button>
+            <button class="btn btn-secondary" onclick="loadPredictSnippet()">Skip</button>
+          </div>
+        </div>
+
+        <div id="predict-result-banner" class="result-banner"></div>
+
+        <div id="predict-diff-container" class="diff-container" style="display: none;">
+          <div class="diff-box">
+            <div class="diff-box-title">Your Prediction</div>
+            <pre id="predict-diff-user" class="code-view" style="margin-bottom:0;"></pre>
+          </div>
+          <div class="diff-box">
+            <div class="diff-box-title">Actual Compiled Java Output</div>
+            <pre id="predict-diff-actual" class="code-view" style="margin-bottom:0;"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: DOES IT COMPILE? -->
+    <div id="tab-compile" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">2️⃣ Does It Compile?</div>
+          <button class="btn btn-secondary" onclick="loadCompileSnippet()">🎲 Next Challenge</button>
+        </div>
+
+        <div style="margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+          <span id="compile-title" style="font-weight: 600; color: var(--accent);">Inspecting snippet...</span>
+          <span id="compile-topic-badge" class="badge badge-info">-</span>
+        </div>
+
+        <div class="code-view" id="compile-code-block">// Loading code snippet...</div>
+
+        <div style="margin-top: 1.25rem;">
+          <div style="font-weight: 600; margin-bottom: 0.75rem;">Will this Java snippet compile successfully?</div>
+          <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+            <label style="cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="compile_guess" value="yes" onchange="toggleCompileGuess(true)">
+              <span>✅ Yes, it compiles</span>
+            </label>
+            <label style="cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="compile_guess" value="no" onchange="toggleCompileGuess(false)">
+              <span>❌ No, compilation error</span>
+            </label>
+          </div>
+
+          <div id="compile-print-box" style="margin-bottom: 1rem; display: none;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted);">
+              What does it print if it compiles?
+            </label>
+            <textarea id="compile-print-prediction" placeholder="Your output prediction..."></textarea>
+          </div>
+
+          <div id="compile-error-box" style="margin-bottom: 1rem; display: none;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted);">
+              Why does it fail? (Name the syntax/OOP error):
+            </label>
+            <input type="text" id="compile-error-prediction" style="width: 100%;" placeholder="e.g. non-static variable referenced from static context, super() missing, etc.">
+          </div>
+
+          <button id="compile-submit-btn" class="btn" onclick="submitCompileGuess()">🔬 Verify with Real javac</button>
+        </div>
+
+        <div id="compile-result-banner" class="result-banner"></div>
+
+        <div id="compile-details" style="display:none; margin-top: 1rem;">
+          <div class="diff-box">
+            <div class="diff-box-title" id="compile-output-title">Compiler / Runtime Output</div>
+            <pre id="compile-actual-output" class="code-view" style="margin-bottom:0;"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: WRITE FROM MEMORY -->
+    <div id="tab-memory" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">3️⃣ Write From Memory</div>
+          <div class="filter-bar" style="margin-bottom:0;">
+            <select id="memory-topic-select" onchange="loadMemoryTask()">
+              <option value="">All Topics</option>
+            </select>
+            <button class="btn btn-secondary" onclick="loadMemoryTask()">🎲 Next Task</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+          <span id="memory-title" style="font-weight: 600; color: var(--accent);">Task Loading...</span>
+          <span id="memory-topic-badge" class="badge badge-info">-</span>
+        </div>
+
+        <div style="background-color: #182335; border: 1px solid var(--card-border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+          <div style="font-weight: 700; color: var(--accent); margin-bottom: 0.5rem;">📋 Task Specification:</div>
+          <div id="memory-task-desc" style="line-height: 1.6; font-size: 0.95rem;">-</div>
+          <div id="memory-concept-desc" style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);"></div>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted);">
+            Write your Java code below from memory:
+          </label>
+          <textarea id="memory-user-code" style="min-height: 250px;" placeholder="public class Main {&#10;    public static void main(String[] args) {&#10;        // write your solution here&#10;    }&#10;}"></textarea>
+          
+          <div style="margin-top: 0.75rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button id="memory-submit-btn" class="btn" onclick="submitMemoryCode()">⚙️ Compile & Run Tests</button>
+            <button class="btn btn-secondary" onclick="toggleOriginalMemoryCode()">👁️ Reveal Original Solution</button>
+            <button class="btn btn-secondary" onclick="loadMemoryTask()">Skip</button>
+          </div>
+        </div>
+
+        <div id="memory-result-banner" class="result-banner"></div>
+
+        <div id="memory-comparison-grid" class="diff-container" style="display: none;">
+          <div class="diff-box">
+            <div class="diff-box-title">Your Output / Compiler Diagnostic</div>
+            <pre id="memory-user-output" class="code-view" style="margin-bottom:0;"></pre>
+          </div>
+          <div class="diff-box">
+            <div class="diff-box-title">Course Reference Implementation</div>
+            <pre id="memory-original-code" class="code-view" style="margin-bottom:0;"></pre>
+          </div>
+        </div>
+
+        <div id="memory-self-rate" style="display: none; margin-top: 1rem; align-items: center; gap: 1rem;">
+          <span style="font-weight: 600;">Self-evaluation:</span>
+          <button class="btn btn-success" onclick="rateMemoryAttempt(true)">✅ Matched Concept</button>
+          <button class="btn btn-danger" onclick="rateMemoryAttempt(false)">❌ Missed Elements</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: EXAM-STYLE -->
+    <div id="tab-exam" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">4️⃣ Past Exam Papers (Cold Practice)</div>
+          <div class="filter-bar" style="margin-bottom:0;">
+            <select id="exam-paper-select" onchange="loadExamQuestion()">
+              <option value="">All Past Exams</option>
+            </select>
+            <button class="btn btn-secondary" onclick="loadExamQuestion()">🎲 Random Exam Q</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+          <span id="exam-q-title" style="font-weight: 600; color: var(--accent);">Question Loading...</span>
+          <span id="exam-topic-badge" class="badge badge-info">-</span>
+        </div>
+
+        <div class="code-view" id="exam-question-text" style="font-size: 0.92rem; line-height: 1.6;">-</div>
+
+        <div style="margin-top: 1.25rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted);">
+            Your Answer (The official solution is strictly hidden until you submit):
+          </label>
+          <textarea id="exam-user-answer" placeholder="Type your full answer here..."></textarea>
+          
+          <div style="margin-top: 0.75rem; display: flex; gap: 0.75rem;">
+            <button id="exam-submit-btn" class="btn" onclick="submitExamAnswer()">🔒 Submit & Reveal Official Solution</button>
+            <button class="btn btn-secondary" onclick="loadExamQuestion()">Next Question</button>
+          </div>
+        </div>
+
+        <div id="exam-solution-box" style="display: none; margin-top: 1.5rem;">
+          <div class="card" style="border-color: #38bdf8; background-color: #0b1526;">
+            <div style="font-weight: 700; color: var(--accent); margin-bottom: 0.75rem;">📖 Official Solution from Exam Key:</div>
+            <div class="code-view" id="exam-official-solution"></div>
+
+            <div style="margin-top: 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+              <span style="font-weight: 600;">Grade your answer:</span>
+              <button class="btn btn-success" onclick="gradeExamAttempt(true)">✅ I Got It Right</button>
+              <button class="btn btn-danger" onclick="gradeExamAttempt(false)">❌ I Got It Wrong</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: FLASHCARDS & RULES -->
+    <div id="tab-flashcards" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">5️⃣ Spaced Repetition Flashcards (1, 3, 7, 14 days)</div>
+          <button class="btn btn-secondary" onclick="openAddRuleModal()">➕ Add Custom Rule</button>
+        </div>
+
+        <div id="flashcard-deck-view">
+          <div style="text-align: center; color: var(--text-muted); margin-bottom: 1rem;">
+            Cards due today: <span id="flashcard-due-count" style="font-weight: 700; color: var(--accent);">0</span>
+          </div>
+
+          <div class="flashcard-wrapper" onclick="flipFlashcard()">
+            <div class="flashcard" id="current-flashcard">
+              <div class="flashcard-badge" id="fc-topic">Topic</div>
+              <div class="flashcard-text" id="fc-text">Click to start flashcard session</div>
+              <div class="flashcard-sub" id="fc-sub">Click card to reveal answer / explanation</div>
+            </div>
+          </div>
+
+          <div id="fc-action-buttons" style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.25rem;">
+            <button class="btn btn-danger" onclick="answerFlashcard(false)">❌ Missed it (Reset: 1d)</button>
+            <button class="btn btn-success" onclick="answerFlashcard(true)">✅ Got it (Advance Interval)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📝 My Exam Cheat Sheet Rules</div>
+        </div>
+        <div id="cheat-sheet-list-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Topic</th>
+                <th>Rule Text</th>
+                <th>Source / Context</th>
+                <th>Saved Date</th>
+              </tr>
+            </thead>
+            <tbody id="cheat-sheet-tbody">
+              <tr><td colspan="4" style="text-align: center; color: var(--text-muted);">No cheat sheet rules saved yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 6: WEAK-SPOT MODE -->
+    <div id="tab-weakspot" class="tab-content">
+      <div class="card" style="border-color: #f59e0b; background: linear-gradient(180deg, #1e293b, #191c26);">
+        <div class="card-header">
+          <div class="card-title" style="color: var(--warning);">⚡ Targeted Weak-Spot Mode</div>
+          <button class="btn btn-secondary" onclick="loadWeakSpotChallenge()">🎲 Next Weak-Spot Exercise</button>
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <div style="font-size: 0.95rem; line-height: 1.6;">
+            The engine analyzes all your past attempts in SQLite, finds the OOP topic you miss most frequently,
+            and serves drills strictly targeting your knowledge gaps.
+          </div>
+          <div style="margin-top: 0.75rem;">
+            <span id="weakspot-target-banner" class="badge badge-warning" style="font-size: 0.88rem; padding: 0.45rem 1rem;">
+              Analyzing weak spots...
+            </span>
+          </div>
+        </div>
+
+        <div id="weakspot-container">
+          <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+            Click "Start Weak-Spot Challenge" to begin.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL: Wrong Answer Prompt to add a Cheat Sheet Rule -->
+  <div id="rule-prompt-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">⚠️ Missed this problem? Lock it in!</div>
+        <button class="btn btn-secondary" style="padding: 0.2rem 0.5rem;" onclick="closeRulePromptModal()">✕</button>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+        Add a <strong>one-line rule</strong> to your cheat sheet. It will automatically enter your spaced repetition deck:
+      </p>
+
+      <div style="margin-bottom: 0.75rem;">
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--text-muted);">Topic</label>
+        <input type="text" id="modal-rule-topic" style="width: 100%;" readonly>
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--text-muted);">One-Line Rule</label>
+        <input type="text" id="modal-rule-text" style="width: 100%;" placeholder="e.g. Always invoke super(...) as the very first line of a subclass constructor.">
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button class="btn btn-secondary" onclick="closeRulePromptModal()">Skip for Now</button>
+        <button class="btn btn-success" onclick="savePromptedRule()">💾 Save Rule to Cheat Sheet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Course Folder Path -->
+  <div id="folder-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" style="color: var(--accent);">📁 Course Folder Configuration</div>
+        <button class="btn btn-secondary" style="padding: 0.2rem 0.5rem;" onclick="closeFolderModal()">✕</button>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+        Enter the absolute path to your course directory:
+      </p>
+
+      <input type="text" id="folder-path-input" style="width: 100%; margin-bottom: 1rem;" placeholder="/path/to/CST 3513 Java OOP">
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button class="btn btn-secondary" onclick="closeFolderModal()">Cancel</button>
+        <button class="btn" onclick="submitFolderRescan()">🔄 Scan & Index</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Client Logic -->
+  <script>
+    // State
+    let currentPredictSnippet = null;
+    let currentCompileSnippet = null;
+    let currentMemorySnippet = null;
+    let currentExamQuestion = null;
+    let currentFlashcards = [];
+    let currentFlashcardIndex = 0;
+    let isFlashcardFlipped = false;
+    let lastMissedContext = { topic: 'General OOP', title: '' };
+
+    // Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+      fetchStatus();
+      loadDashboard();
+      loadCheatSheetRules();
+    });
+
+    // Tab switcher
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      event.target.classList.add('active');
+      const target = document.getElementById(`tab-${tabName}`);
+      if (target) target.classList.add('active');
+
+      if (tabName === 'dashboard') loadDashboard();
+      if (tabName === 'predict' && !currentPredictSnippet) loadPredictSnippet();
+      if (tabName === 'compile' && !currentCompileSnippet) loadCompileSnippet();
+      if (tabName === 'memory' && !currentMemorySnippet) loadMemoryTask();
+      if (tabName === 'exam' && !currentExamQuestion) loadExamQuestion();
+      if (tabName === 'flashcards') loadFlashcards();
+      if (tabName === 'weakspot') loadWeakSpotChallenge();
+    }
+
+    // Status & JDK Check
+    async function fetchStatus() {
+      try {
+        const res = await fetch('/api/status');
+        const data = await res.json();
+        
+        const jdkBadge = document.getElementById('jdk-badge');
+        if (data.jdk && data.jdk.found) {
+          jdkBadge.className = 'badge badge-success';
+          jdkBadge.textContent = `☕ ${data.jdk.version || 'JDK Ready'}`;
+        } else {
+          jdkBadge.className = 'badge badge-danger';
+          jdkBadge.textContent = '⚠️ JDK Missing';
+          alert('JDK Alert: Java compiler not detected!\n\n' + (data.jdk.fix_instructions || 'Please install openjdk or set JAVA_HOME.'));
+        }
+
+        updateHeaderStats(data.stats);
+        populateTopics(data.topics || []);
+      } catch (err) {
+        console.error('Failed to fetch status:', err);
+      }
+    }
+
+    function updateHeaderStats(stats) {
+      if (!stats) return;
+      document.getElementById('streak-badge').textContent = `Streak: ${stats.current_streak || 0} 🔥`;
+      document.getElementById('due-badge').textContent = `Due Today: ${stats.due_flashcards || 0} 📅`;
+      
+      document.getElementById('stat-total').textContent = stats.total_attempts || 0;
+      document.getElementById('stat-accuracy').textContent = `${stats.overall_accuracy || 0}%`;
+      document.getElementById('stat-streak').textContent = `${stats.current_streak || 0} 🔥`;
+      document.getElementById('stat-due').textContent = stats.due_flashcards || 0;
+    }
+
+    function populateTopics(topics) {
+      const pSel = document.getElementById('predict-topic-select');
+      const mSel = document.getElementById('memory-topic-select');
+      
+      [pSel, mSel].forEach(sel => {
+        if (!sel) return;
+        const currVal = sel.value;
+        sel.innerHTML = '<option value="">All Topics</option>';
+        topics.forEach(t => {
+          const opt = document.createElement('option');
+          opt.value = t;
+          opt.textContent = t;
+          sel.appendChild(opt);
+        });
+        sel.value = currVal;
+      });
+    }
+
+    // 1. PREDICT OUTPUT
+    async function loadPredictSnippet() {
+      const topic = document.getElementById('predict-topic-select').value;
+      const url = topic ? `/api/snippets/random?topic=${encodeURIComponent(topic)}` : '/api/snippets/random';
+      
+      document.getElementById('predict-result-banner').style.display = 'none';
+      document.getElementById('predict-diff-container').style.display = 'none';
+      document.getElementById('predict-user-input').value = '';
+
+      try {
+        const res = await fetch(url);
+        const snip = await res.json();
+        if (snip.error) {
+          document.getElementById('predict-title').textContent = snip.error;
+          return;
+        }
+        currentPredictSnippet = snip;
+        document.getElementById('predict-title').textContent = snip.title;
+        document.getElementById('predict-topic-badge').textContent = snip.topic;
+        document.getElementById('predict-code-block').textContent = snip.code;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function submitPrediction() {
+      if (!currentPredictSnippet) return;
+      const userPred = document.getElementById('predict-user-input').value.trim();
+      if (!userPred) {
+        alert('Please type your prediction first!');
+        return;
+      }
+
+      const submitBtn = document.getElementById('predict-submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '⏳ Compiling & Running...';
+
+      try {
+        const res = await fetch('/api/predict/run', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            snippet_id: currentPredictSnippet.id,
+            prediction: userPred
+          })
+        });
+        const result = await res.json();
+
+        const banner = document.getElementById('predict-result-banner');
+        const diffCont = document.getElementById('predict-diff-container');
+        document.getElementById('predict-diff-user').textContent = userPred;
+        document.getElementById('predict-diff-actual').textContent = result.actual_output || result.error || '(no output)';
+        diffCont.style.display = 'grid';
+
+        if (result.matched) {
+          banner.className = 'result-banner success';
+          banner.textContent = '🎉 Spot on! Your prediction matches the real Java execution output perfectly.';
+        } else {
+          banner.className = 'result-banner error';
+          banner.textContent = '❌ Output mismatch. Compare your prediction with the actual output below.';
+          promptCheatSheetRule(currentPredictSnippet.topic, currentPredictSnippet.title);
+        }
+        banner.style.display = 'block';
+        fetchStatus();
+      } catch (err) {
+        console.error(err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '🚀 Compile, Run & Diff Output';
+      }
+    }
+
+    // 2. DOES IT COMPILE?
+    async function loadCompileSnippet() {
+      document.getElementById('compile-result-banner').style.display = 'none';
+      document.getElementById('compile-details').style.display = 'none';
+      document.querySelectorAll('input[name="compile_guess"]').forEach(r => r.checked = false);
+      document.getElementById('compile-print-box').style.display = 'none';
+      document.getElementById('compile-error-box').style.display = 'none';
+
+      try {
+        const res = await fetch('/api/compile_check/snippet');
+        const data = await res.json();
+        currentCompileSnippet = data;
+        document.getElementById('compile-title').textContent = data.title;
+        document.getElementById('compile-topic-badge').textContent = data.topic;
+        document.getElementById('compile-code-block').textContent = data.code;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function toggleCompileGuess(compiles) {
+      document.getElementById('compile-print-box').style.display = compiles ? 'block' : 'none';
+      document.getElementById('compile-error-box').style.display = compiles ? 'none' : 'block';
+    }
+
+    async function submitCompileGuess() {
+      if (!currentCompileSnippet) return;
+      const guessRadio = document.querySelector('input[name="compile_guess"]:checked');
+      if (!guessRadio) {
+        alert('Please choose whether it compiles or not!');
+        return;
+      }
+      const userGuessCompiles = guessRadio.value === 'yes';
+      const userDetail = userGuessCompiles ? 
+        document.getElementById('compile-print-prediction').value :
+        document.getElementById('compile-error-prediction').value;
+
+      const submitBtn = document.getElementById('compile-submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '🔬 Compiling with javac...';
+
+      try {
+        const res = await fetch('/api/compile_check/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            code: currentCompileSnippet.code,
+            topic: currentCompileSnippet.topic,
+            title: currentCompileSnippet.title,
+            has_injected_bug: currentCompileSnippet.has_bug,
+            bug_explanation: currentCompileSnippet.bug_explanation,
+            user_guess_compiles: userGuessCompiles,
+            user_detail: userDetail
+          })
+        });
+        const result = await res.json();
+
+        const banner = document.getElementById('compile-result-banner');
+        const details = document.getElementById('compile-details');
+        const outPre = document.getElementById('compile-actual-output');
+
+        details.style.display = 'block';
+        outPre.textContent = result.compiler_message || result.runtime_output || '(Clean compilation)';
+
+        if (result.is_correct) {
+          banner.className = 'result-banner success';
+          banner.innerHTML = `✅ <strong>Correct!</strong> ${result.explanation}`;
+        } else {
+          banner.className = 'result-banner error';
+          banner.innerHTML = `❌ <strong>Incorrect.</strong> ${result.explanation}`;
+          promptCheatSheetRule(currentCompileSnippet.topic, currentCompileSnippet.title);
+        }
+        banner.style.display = 'block';
+        fetchStatus();
+      } catch (err) {
+        console.error(err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '🔬 Verify with Real javac';
+      }
+    }
+
+    // 3. WRITE FROM MEMORY
+    async function loadMemoryTask() {
+      const topic = document.getElementById('memory-topic-select').value;
+      const url = topic ? `/api/memory/random?topic=${encodeURIComponent(topic)}` : '/api/memory/random';
+
+      document.getElementById('memory-result-banner').style.display = 'none';
+      document.getElementById('memory-comparison-grid').style.display = 'none';
+      document.getElementById('memory-self-rate').style.display = 'none';
+      document.getElementById('memory-user-code').value = '';
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        currentMemorySnippet = data;
+        document.getElementById('memory-title').textContent = data.title;
+        document.getElementById('memory-topic-badge').textContent = data.topic;
+        document.getElementById('memory-task-desc').textContent = data.what_it_does || 'Write a program demonstrating this OOP concept.';
+        document.getElementById('memory-concept-desc').textContent = data.concept ? `Key Concept: ${data.concept}` : '';
+        document.getElementById('memory-original-code').textContent = data.code;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function submitMemoryCode() {
+      if (!currentMemorySnippet) return;
+      const userCode = document.getElementById('memory-user-code').value.trim();
+      if (!userCode) {
+        alert('Please write your Java code first!');
+        return;
+      }
+
+      const submitBtn = document.getElementById('memory-submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '⚙️ Compiling & Testing...';
+
+      try {
+        const res = await fetch('/api/memory/test', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            code: userCode,
+            topic: currentMemorySnippet.topic,
+            title: currentMemorySnippet.title
+          })
+        });
+        const result = await res.json();
+
+        const banner = document.getElementById('memory-result-banner');
+        const grid = document.getElementById('memory-comparison-grid');
+        const userOut = document.getElementById('memory-user-output');
+
+        grid.style.display = 'grid';
+        document.getElementById('memory-self-rate').style.display = 'flex';
+
+        if (result.compiled) {
+          banner.className = 'result-banner success';
+          banner.textContent = '✅ Code compiled and executed successfully! Compare your implementation with the original below.';
+          userOut.textContent = result.output || '(Ran successfully with no stdout)';
+        } else {
+          banner.className = 'result-banner error';
+          banner.textContent = '⚠️ Compilation error. Review javac diagnostics below and inspect the reference code.';
+          userOut.textContent = result.error;
+        }
+        banner.style.display = 'block';
+      } catch (err) {
+        console.error(err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '⚙️ Compile & Run Tests';
+      }
+    }
+
+    function toggleOriginalMemoryCode() {
+      const grid = document.getElementById('memory-comparison-grid');
+      grid.style.display = grid.style.display === 'none' ? 'grid' : 'none';
+      document.getElementById('memory-self-rate').style.display = 'flex';
+    }
+
+    async function rateMemoryAttempt(matched) {
+      if (!currentMemorySnippet) return;
+      await fetch('/api/log_attempt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          exercise_type: 'write_from_memory',
+          topic: currentMemorySnippet.topic,
+          item_title: currentMemorySnippet.title,
+          is_correct: matched
+        })
+      });
+      document.getElementById('memory-self-rate').style.display = 'none';
+      if (!matched) {
+        promptCheatSheetRule(currentMemorySnippet.topic, currentMemorySnippet.title);
+      }
+      fetchStatus();
+      loadMemoryTask();
+    }
+
+    // 4. EXAM-STYLE QUESTIONS
+    async function loadExamQuestion() {
+      const examName = document.getElementById('exam-paper-select').value;
+      const url = examName ? `/api/exams/random?exam_name=${encodeURIComponent(examName)}` : '/api/exams/random';
+
+      document.getElementById('exam-solution-box').style.display = 'none';
+      document.getElementById('exam-user-answer').value = '';
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.error) {
+          document.getElementById('exam-q-title').textContent = data.error;
+          return;
+        }
+        currentExamQuestion = data;
+        document.getElementById('exam-q-title').textContent = data.title;
+        document.getElementById('exam-topic-badge').textContent = data.topic;
+        document.getElementById('exam-question-text').textContent = data.question_text;
+
+        // Populate exam paper options once if empty
+        const sel = document.getElementById('exam-paper-select');
+        if (sel.options.length <= 1 && data.all_exams) {
+          data.all_exams.forEach(ex => {
+            const opt = document.createElement('option');
+            opt.value = ex;
+            opt.textContent = ex;
+            sel.appendChild(opt);
+          });
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function submitExamAnswer() {
+      if (!currentExamQuestion) return;
+      const userAns = document.getElementById('exam-user-answer').value.trim();
+      if (!userAns) {
+        alert('Please write your answer first before revealing the official solution!');
+        return;
+      }
+
+      const submitBtn = document.getElementById('exam-submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '🔓 Unlocking Solution...';
+
+      try {
+        const res = await fetch('/api/exams/reveal', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            question_id: currentExamQuestion.id,
+            user_answer: userAns
+          })
+        });
+        const result = await res.json();
+
+        document.getElementById('exam-official-solution').textContent = result.official_solution || 'Solution not available.';
+        document.getElementById('exam-solution-box').style.display = 'block';
+      } catch (err) {
+        console.error(err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '🔒 Submit & Reveal Official Solution';
+      }
+    }
+
+    async function gradeExamAttempt(isCorrect) {
+      if (!currentExamQuestion) return;
+      await fetch('/api/log_attempt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          exercise_type: 'exam_style',
+          topic: currentExamQuestion.topic,
+          item_title: currentExamQuestion.title,
+          is_correct: isCorrect
+        })
+      });
+      document.getElementById('exam-solution-box').style.display = 'none';
+      if (!isCorrect) {
+        promptCheatSheetRule(currentExamQuestion.topic, currentExamQuestion.title);
+      }
+      fetchStatus();
+      loadExamQuestion();
+    }
+
+    // 5. FLASHCARDS & SPACED REPETITION
+    async function loadFlashcards() {
+      try {
+        const res = await fetch('/api/flashcards/due');
+        const data = await res.json();
+        currentFlashcards = data.cards || [];
+        currentFlashcardIndex = 0;
+        document.getElementById('flashcard-due-count').textContent = currentFlashcards.length;
+
+        renderCurrentFlashcard();
+        loadCheatSheetRules();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderCurrentFlashcard() {
+      isFlashcardFlipped = false;
+      const cardEl = document.getElementById('current-flashcard');
+      const topicEl = document.getElementById('fc-topic');
+      const textEl = document.getElementById('fc-text');
+      const subEl = document.getElementById('fc-sub');
+      const btns = document.getElementById('fc-action-buttons');
+
+      if (!currentFlashcards || currentFlashcards.length === 0 || currentFlashcardIndex >= currentFlashcards.length) {
+        topicEl.textContent = 'All Caught Up! 🎉';
+        textEl.textContent = 'No more cards due for review today.';
+        subEl.textContent = 'Come back tomorrow or add new rules from your cheat sheet below!';
+        btns.style.display = 'none';
+        return;
+      }
+
+      btns.style.display = 'flex';
+      const card = currentFlashcards[currentFlashcardIndex];
+      topicEl.textContent = `${card.topic} · Level ${card.repetition_level || 0} (${card.interval_days || 1}d interval)`;
+      textEl.textContent = card.front;
+      subEl.textContent = 'Click to flip and reveal rule explanation';
+    }
+
+    function flipFlashcard() {
+      if (!currentFlashcards || currentFlashcardIndex >= currentFlashcards.length) return;
+      const card = currentFlashcards[currentFlashcardIndex];
+      const textEl = document.getElementById('fc-text');
+      const subEl = document.getElementById('fc-sub');
+
+      isFlashcardFlipped = !isFlashcardFlipped;
+      if (isFlashcardFlipped) {
+        textEl.textContent = card.back;
+        subEl.textContent = 'Review your answer, then click Got it or Missed it below';
+      } else {
+        textEl.textContent = card.front;
+        subEl.textContent = 'Click to flip and reveal rule explanation';
+      }
+    }
+
+    async function answerFlashcard(gotIt) {
+      if (!currentFlashcards || currentFlashcardIndex >= currentFlashcards.length) return;
+      const card = currentFlashcards[currentFlashcardIndex];
+
+      await fetch('/api/flashcards/review', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          card_id: card.id,
+          got_it: gotIt
+        })
+      });
+
+      if (!gotIt) {
+        promptCheatSheetRule(card.topic, card.front);
+      }
+
+      currentFlashcardIndex++;
+      renderCurrentFlashcard();
+      fetchStatus();
+    }
+
+    async function loadCheatSheetRules() {
+      try {
+        const res = await fetch('/api/cheat_sheet');
+        const data = await res.json();
+        const tbody = document.getElementById('cheat-sheet-tbody');
+        if (!data.rules || data.rules.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">No cheat sheet rules saved yet.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = '';
+        data.rules.forEach(r => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><span class="badge badge-info">${r.topic}</span></td>
+            <td style="font-weight: 500;">${r.rule_text}</td>
+            <td style="color: var(--text-muted); font-size: 0.8rem;">${r.source_context || '-'}</td>
+            <td style="color: var(--text-muted); font-size: 0.8rem;">${r.created_at ? r.created_at.split('T')[0] : '-'}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // 6. WEAK-SPOT MODE
+    async function loadWeakSpotChallenge() {
+      try {
+        const res = await fetch('/api/weak_spot');
+        const data = await res.json();
+        const banner = document.getElementById('weakspot-target-banner');
+        const container = document.getElementById('weakspot-container');
+
+        banner.textContent = `🎯 Focus Topic: ${data.target_topic} (Accuracy: ${data.topic_accuracy || 0}%)`;
+
+        if (data.exercise) {
+          container.innerHTML = `
+            <div style="background-color: #0b1120; border: 1px solid var(--card-border); border-radius: 8px; padding: 1.25rem;">
+              <div style="display:flex; justify-content:space-between; margin-bottom: 0.75rem;">
+                <span style="font-weight:700; color:var(--accent);">${data.exercise.title}</span>
+                <span class="badge badge-warning">${data.exercise.type}</span>
+              </div>
+              <div class="code-view" style="max-height: 300px; overflow-y: auto;">${data.exercise.code || data.exercise.question_text}</div>
+              <div style="margin-top: 1rem; display: flex; gap: 0.75rem;">
+                <button class="btn" onclick="launchExerciseFromWeakSpot('${data.exercise.type}', '${data.target_topic}')">Practice This In ${data.exercise.type_label}</button>
+                <button class="btn btn-secondary" onclick="loadWeakSpotChallenge()">Next Drill</button>
+              </div>
+            </div>
+          `;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function launchExerciseFromWeakSpot(type, topic) {
+      if (type === 'predict_output') {
+        document.getElementById('predict-topic-select').value = topic;
+        switchTab('predict');
+        loadPredictSnippet();
+      } else if (type === 'does_it_compile') {
+        switchTab('compile');
+        loadCompileSnippet();
+      } else if (type === 'write_from_memory') {
+        document.getElementById('memory-topic-select').value = topic;
+        switchTab('memory');
+        loadMemoryTask();
+      } else {
+        switchTab('exam');
+        loadExamQuestion();
+      }
+    }
+
+    // Dashboard loader
+    async function loadDashboard() {
+      try {
+        const res = await fetch('/api/dashboard');
+        const data = await res.json();
+        updateHeaderStats(data.stats);
+
+        const tbody = document.getElementById('topic-table-body');
+        if (!data.stats.topic_stats || data.stats.topic_stats.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color: var(--text-muted);">No attempts logged yet. Start practicing!</td></tr>';
+        } else {
+          tbody.innerHTML = '';
+          data.stats.topic_stats.forEach(ts => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td><strong>${ts.topic}</strong></td>
+              <td>${ts.total} (${ts.correct} correct)</td>
+              <td><span class="badge ${ts.accuracy >= 75 ? 'badge-success' : ts.accuracy >= 50 ? 'badge-warning' : 'badge-danger'}">${ts.accuracy}%</span></td>
+              <td style="width: 30%;">
+                <div class="prog-bar-bg">
+                  <div class="prog-bar-fill" style="width: ${ts.accuracy}%;"></div>
+                </div>
+              </td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+
+        const idxView = document.getElementById('index-summary-view');
+        if (data.index_summary) {
+          const s = data.index_summary;
+          idxView.innerHTML = `
+            📁 <strong>Indexed Directory:</strong> <code>${s.course_folder}</code><br>
+            📄 <strong>Total Files:</strong> ${s.total_files} (${Object.entries(s.files_by_extension || {}).map(([k,v]) => `${v} ${k}`).join(', ')})<br>
+            ☕ <strong>Runnable Snippets Bank:</strong> ${s.total_snippets} programs<br>
+            📝 <strong>Exam Questions & Solutions Bank:</strong> ${s.total_exam_questions} questions<br>
+            💡 <strong>Spaced Repetition Seed Rules:</strong> ${s.total_seed_rules} rules
+          `;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // Cheat Sheet Rule Prompt Modal
+    function promptCheatSheetRule(topic, title) {
+      lastMissedContext = { topic: topic || 'General OOP', title: title || '' };
+      document.getElementById('modal-rule-topic').value = lastMissedContext.topic;
+      document.getElementById('modal-rule-text').value = '';
+      document.getElementById('rule-prompt-modal').classList.add('active');
+      document.getElementById('modal-rule-text').focus();
+    }
+
+    function closeRulePromptModal() {
+      document.getElementById('rule-prompt-modal').classList.remove('active');
+    }
+
+    async function savePromptedRule() {
+      const topic = document.getElementById('modal-rule-topic').value;
+      const ruleText = document.getElementById('modal-rule-text').value.trim();
+      if (!ruleText) {
+        alert('Please write a quick one-line rule!');
+        return;
+      }
+
+      await fetch('/api/cheat_sheet/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          topic: topic,
+          rule_text: ruleText,
+          source_context: lastMissedContext.title
+        })
+      });
+
+      closeRulePromptModal();
+      loadCheatSheetRules();
+      fetchStatus();
+      alert('Rule saved to your cheat sheet and scheduled for review tomorrow in flashcards!');
+    }
+
+    function openAddRuleModal() {
+      promptCheatSheetRule('Classes & Objects', 'Manual addition');
+    }
+
+    // Folder Modal
+    function openFolderModal() {
+      document.getElementById('folder-modal').classList.add('active');
+    }
+    function closeFolderModal() {
+      document.getElementById('folder-modal').classList.remove('active');
+    }
+    async function submitFolderRescan() {
+      const p = document.getElementById('folder-path-input').value.trim();
+      if (!p) {
+        alert('Please enter a folder path!');
+        return;
+      }
+      try {
+        const res = await fetch('/api/rescan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path: p })
+        });
+        const d = await res.json();
+        if (d.error) {
+          alert('Error scanning folder: ' + d.error);
+        } else {
+          alert(`Indexed successfully! Found ${d.total_snippets} snippets and ${d.total_exam_questions} exam questions.`);
+          closeFolderModal();
+          fetchStatus();
+          loadDashboard();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>

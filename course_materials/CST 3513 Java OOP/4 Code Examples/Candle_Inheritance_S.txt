@@ -1,0 +1,81 @@
+
+1.1
+package javaapplication249;
+public class Candle {
+  private String color;
+   private int height;
+   protected double price;
+   public String getColor()
+   {
+      return color;
+   }
+   public int getHeight()
+   {
+      return height;
+   }
+   public double getPrice()
+   {
+      return price;
+   }
+   public void setColor(String c)
+   {
+      color = c;
+   }
+   public void setHeight(int h)
+   {
+     
+      double per_inch_2 = 2;
+      height = h;
+      price = height * per_inch_2 ;
+   }
+}
+
+1.2
+
+package javaapplication249;
+
+public class ScentedCandle extends Candle
+{
+   private String scent;
+   public String getScent()
+   {
+      return scent;
+   }
+   public void setScent(String scent)
+   {
+      this.scent = scent;
+   }
+   public void setHeight(int h)
+   {     
+      double per_inch_3  = 3;
+      super.setHeight(h);
+      price = h * per_inch_3 ;
+   }
+ 
+}
+
+1.3
+package javaapplication249;
+public class JavaApplication249 {
+    public static void main(String[] args) {
+        Candle aCandle = new Candle();
+      ScentedCandle aScentedCandle = new ScentedCandle();
+      aCandle.setColor("pink");
+      aCandle.setHeight(6);
+      aScentedCandle.setColor("white");
+      aScentedCandle.setScent("gardinia");
+      aScentedCandle.setHeight(6);
+      System.out.println("The " + aCandle.getHeight() + " inch " + aCandle.getColor() +
+         " candle costs $" + aCandle.getPrice());
+      System.out.println("The " + aScentedCandle.getHeight() + " inch " +
+         aScentedCandle.getScent() +
+         " " + aScentedCandle.getColor() +
+         " candle costs $" + aScentedCandle.getPrice());
+    }
+  }
+
+run:
+The 6 inch pink candle costs $12.0
+The 6 inch gardinia white candle costs $18.0
+BUILD SUCCESSFUL (total time: 0 seconds)
+
